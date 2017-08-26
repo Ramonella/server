@@ -1,0 +1,926 @@
+
+options{
+	
+IGNORE_CASE = false;
+
+STATIC=false;
+}
+
+PARSER_BEGIN(analizador)
+
+package Analizador;
+import java.io.*;
+
+public class analizador{
+
+}
+
+PARSER_END(analizador)
+
+
+SKIP:
+{
+ " "
+    |"\r"
+    |"\t"
+    |"\r\n"
+    | "#*" : COMMENT
+    |"\n"
+    | "#" : COMMENT2	
+}
+
+<COMMENT> SKIP :{
+  "*#" : DEFAULT
+}
+
+<COMMENT> MORE :{
+   <~[]>
+}
+
+<COMMENT2> SKIP :{
+  "\n" : DEFAULT
+}
+
+<COMMENT2> MORE :{
+   <~[]>
+}
+
+
+/*--------------- SIMBOLOS -----------------*/
+//palabras reservadas dll
+TOKEN:
+{
+    < crear:"CREAR">
+  | < base_datos:"BASE_DATOS">
+  | < tabla:"TABLA">
+  | < nulo:"Nulo">
+  | < no_nulo:"No Nulo">
+  | < autoincrementable:"Autoincrementable">
+  | < llave_prim:"Llave_Primaria">
+  | < llave_for:"Llave_Foranea">
+  | < unico:"Unico">
+  | < objeto:"OBJETO">
+  | < procedimiento:"PROCEDIMIENTO">
+  | < funcion:"FUNCION">
+  | < retorno:"RETORNO">
+  | < usuario:"USUARIO">
+  | < colocar:"COLOCAR">
+  | < password:"password">
+  | < usar:"USAR">
+  | < alterar:"ALTERAR">
+  | < agregar:"AGREGAR">
+  | < quitar:"QUITAR">
+  | < cambiar:"CAMBIAR">
+  | < eliminar:"ELIMINAR">
+  | < obj_usql:"Objeto-USQL">
+}
+
+TOKEN:{
+< insertar:"INSERTAR">
+|< en:"EN">
+|< actualizar:"ACTUALIZAR">
+|< valores:"VALORES">
+|< borrar:"BORRAR">
+|< donde:"DONDE">
+|< seleccionar:"SELECCIONAR">
+|< de:"DE">
+|< ordenar:"ORDENAR">
+|< por:"POR">
+|< asc:"ASC">
+|< desc:"DESC">
+}
+
+
+TOKEN:{
+
+< permisos:"PERMISOS">
+|< otorgar:"OTORGAR">
+|< denegar:"DENEGAR">
+
+}
+
+
+TOKEN:{
+
+< declarar:"DECLARAR">
+|< si:"SI">
+|< sino:"SINO">
+|<selecciona:"SELECCIONA">
+|<caso:"CASO">
+|<defecto:"DEFECTO">
+|<para:"PARA">
+|<mientras:"MIENTRAS">
+|<detener:"DETENER">
+|<imprimir:"IMPRIMIR">
+|<fecha:"FECHA">
+|<fecha_hora:"FECHA_HORA">
+|<contar:"CONTAR">
+|<backup:"BACKUP">
+|<usqldump:"USQLDUMP">
+|<completo:"COMPLETO">
+|<restaurar:"RESTAURAR">
+}
+
+TOKEN:{
+   < TEXT:"TEXT">
+  | < INTEGER:"INTEGER">
+  | < DOUBLE:"DOUBLE">
+  | < BOOL:"BOOL">
+  | < DATE:"DATE">
+  | <DATETIME:"DATETIME">
+
+}
+
+TOKEN:    //PALABRAS RESERVADAS
+{
+    
+   < OR: "||">
+  | < AND: "&&">
+  | < NOT: "!">
+  |<falso :"falso">
+  |<verdadero:"verdadero">
+}
+
+TOKEN:{
+ <menos_menos:"--">  
+|<mas_mas:"++">  
+|<S_MAS: "+">
+|<S_MENOS: "-">
+|<S_POR: "*">
+|<S_DIV: "/">
+|<S_POT: "^">
+}
+
+TOKEN:{
+<dos_puntos: ":">
+|<abre_par: "(">
+|<cierra_par: ")">
+|<coma:",">
+|<punto:".">
+|<punto_coma:";">
+|<abre_llave:"{">
+|<cierra_llave:"}">
+}
+
+TOKEN :   //EXPRESONES REGULARES 
+{
+     <DECIMAL: (["0"-"9"])+("."(["0"-"9"])+)>
+  |  < NUM: ["0"-"9"] (["0"-"9"])* >
+  |  <CADENA: "\"" (  ~["\""] )* "\"">
+  |  <CARACTER: "\'" (["0"-"9"] | ["_","a"-"z","A"-"Z"] | "#" | "$" | "%" | "?" | "¿" | "@")  "\'">
+  |  < id: <LETRA> (<LETRA>|<DIGITO>)* >
+  |  < #LETRA: ["_","a"-"z","A"-"Z"] >
+  |  < #DIGITO: ["0"-"9"] >
+}
+
+SimpleNode Start():{}{
+
+	Inicio(){return jjtThis;}
+
+}
+
+void Inicio():{}{
+archivo()
+ // Condicion()
+}
+
+
+
+
+
+
+/*   -------------- Instrucciones  ARchivo ---------------------*/
+
+
+void inst_archivo()#void:{}{
+ //dml
+  INSERTAR()
+  |BORRAR()
+  |ACTUALIZAR()
+  |SELECCIONAR()
+ //ddl
+  |CREAR()
+  |ELIMINAR()
+  |ALTERAR()
+  |USAR() 
+  //dml
+  |OTORGAR()
+  |DENEGAR()
+  //ssl
+  |DECLARAR()
+  |ASIGNACION()
+
+}
+
+
+void archivo():{}{
+
+  inst_archivo() (inst_archivo())*
+}
+
+
+/*------------------------ Instrucciones ddl ------------------------------*/
+
+
+void TIPO()#Tipo:{Token t;}
+{
+   
+   t= <TEXT> { jjtThis.setName(t.image); }
+  |t=<INTEGER> { jjtThis.setName(t.image); }
+  |t=<DOUBLE> {  jjtThis.setName(t.image); }
+  |t=<BOOL> { jjtThis.setName(t.image); }
+  |t=<DATETIME> {  jjtThis.setName(t.image); }
+  |t=<DATE> { jjtThis.setName(t.image); }
+  |t=<id> { jjtThis.setName(t.image); }
+
+}
+
+
+void L_ATRIBUTOS():{}{
+ 
+ (ATRIBUTO()(<coma> ATRIBUTO())*)
+}
+
+void ATRIBUTO():{}{
+
+  TIPO() term_id()
+}
+
+void VAR_PARAMETRO():{}{
+
+  TIPO() "@" term_id()
+}
+
+void L_VAR_PARAMETRO():{}{
+ 
+ (VAR_PARAMETRO()(<coma> VAR_PARAMETRO())*)
+}
+
+
+void L_ELEMENTOS():{}{
+
+   ELEMENTO() (<coma> ELEMENTO())*
+
+}
+
+void ELEMENTO():{}
+{
+  ATRIBUTO()(COMPLEMENTO())?
+}
+
+void COMPLEMENTO():{}{
+ 
+
+  (COMPLE_U_2()(COMPLE_U_2())*)
+}
+
+
+void COMPLE_U_2()#void:{}
+{
+   COMPLE_U()
+   |LLAVE_FOR()
+   
+}
+
+void COMPLE_U()#COMPE_U:{Token t;}{
+
+  t= <nulo>{ jjtThis.setName(t.image); }
+  |t= <no_nulo>{ jjtThis.setName(t.image); }
+  |t= <autoincrementable>{ jjtThis.setName(t.image); }
+  |t= <llave_prim>{ jjtThis.setName(t.image); }
+  |t= <unico>{ jjtThis.setName(t.image); }
+}
+
+
+void LLAVE_FOR():{}{
+
+  <llave_for> term_id()
+}
+
+
+
+
+
+void L_CREAR():{}
+{
+
+  (CREAR())*
+}
+
+void CREAR():{}
+{
+
+  <crear> P_CREAR()
+
+}
+
+void P_CREAR()#void:{}{
+   BASE()
+  |TABLA()
+  |OBJETO()
+  |PROCEDIMIENTO()
+  |FUNCION()
+  |USUARIO()
+}
+
+void BASE():{}
+{
+
+  <base_datos> term_id() <punto_coma>
+}
+
+void TABLA():{}
+{
+  <tabla> term_id() <abre_par> (L_ELEMENTOS())? <cierra_par><punto_coma>
+}
+
+
+void OBJETO():{}
+{
+
+  <objeto>term_id()<abre_par> (L_ATRIBUTOS())? <cierra_par><punto_coma>
+}
+
+
+
+void PROCEDIMIENTO():{}
+{
+  <procedimiento> term_id() <abre_par> L_VAR_PARAMETRO() <cierra_par> CUERPO()
+}
+
+
+void FUNCION():{}
+{
+  <funcion> term_id() <abre_par> L_VAR_PARAMETRO() <cierra_par> TIPO() CUERPO()
+}
+
+void USUARIO():{}{
+
+<usuario> term_id() <colocar><password>"=" Cadena()<punto_coma>
+
+}
+
+
+
+void USAR():{}{
+
+<usar> term_id()<punto_coma>
+
+}
+
+
+void L_ID():{}{
+
+Id()(<coma>Id())*
+
+}
+
+
+void ALTERAR_TABLA():{}{
+  <tabla> term_id() OPCIONES_TABLA()
+}
+
+void OPCIONES_TABLA()#void:{}{
+
+  ALTERAR_AGREGAR_TABLA()
+  |ALTERAR_QUITAR_TABLA()
+}
+
+void ALTERAR_AGREGAR_TABLA():{}{
+
+  <agregar><abre_par>L_ELEMENTOS()<cierra_par>
+}
+
+void ALTERAR_QUITAR_TABLA():{}{
+
+  <quitar> L_ID()
+}
+
+void ALTERAR_OBJETO():{}
+{
+  <objeto>term_id()OPCIONES_OBJETO()
+}
+
+void OPCIONES_OBJETO()#void:{}{
+   ALTERAR_AGREGAR_OBJETO()
+   |ALTERAR_QUITAR_OBJETO()
+
+}
+
+void ALTERAR_AGREGAR_OBJETO():{}{
+ <agregar> <abre_par> L_ATRIBUTOS()<cierra_par>
+}
+
+
+void ALTERAR_QUITAR_OBJETO():{}{
+
+  <quitar>L_ID()
+}
+
+void ALTERAR_USUARIO():{}{
+  <usuario>term_id()<cambiar><password>"="Cadena()
+}
+
+
+void ALTERAR():{}{
+
+  <alterar>OPCIONES_ALTERAR()<punto_coma>
+
+}
+
+void OPCIONES_ALTERAR():{}{
+
+  ALTERAR_USUARIO()
+  |ALTERAR_TABLA()
+  |ALTERAR_OBJETO()
+}
+
+void ELIMINAR():{}{
+  
+ <eliminar> OBJETO_USQL() term_id()<punto_coma>
+}
+
+
+void OBJETO_USQL()#OBJETO_USQL:{Token t;}{
+
+  t= <base_datos>{ jjtThis.setName(t.image); }
+  |t= <tabla>{ jjtThis.setName(t.image); }
+  |t= <objeto>{ jjtThis.setName(t.image); }
+  |t= <usuario>{ jjtThis.setName(t.image); }
+}
+
+
+/* ---------------------------------------- acciones DML ----------------------------- */
+
+
+void INSERTAR():{}{
+
+<insertar><en><tabla>term_id()<abre_par> OPCIONES_INSERTAR() <punto_coma>
+
+}
+
+void OPCIONES_INSERTAR():{}{
+
+      LOOKAHEAD(3) L_ID()<cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>((Donde())?)
+     |Parametro_Expresion()<cierra_par>
+   
+}
+
+void Donde():{}{
+
+  <donde>Condicion()
+}
+
+void ACTUALIZAR():{}{
+
+  <actualizar><tabla>term_id()<abre_par>L_ID()<cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>((Donde())?)<punto_coma>
+}
+
+void BORRAR():{}{
+<borrar><en><tabla>term_id()((Donde())?)<punto_coma>
+
+}
+
+void SELECCIONAR():{}{
+
+<seleccionar> Tipo_Seleccion()<de>L_ID()((Donde_Orden())?)<punto_coma>
+
+}
+
+void Tipo_Seleccion():{}{
+
+  asterisco()
+  |L_ID()
+
+}
+
+void Donde_Orden():{}
+{
+   Donde() <ordenar><por> Id() Orden()
+
+}
+
+
+void asterisco():{Token t;}{
+
+  t= "*"{ jjtThis.setName(t.image); }
+}
+
+void Orden():{Token t;}{
+
+   t= <asc> { jjtThis.setName(t.image); }
+   |t= <desc> { jjtThis.setName(t.image); }
+}
+
+
+
+/*------------------------ Instrucciones DCL --------------------------*/
+
+void Objeto_permiso()#void:{}
+{
+
+   term_id()
+   |asterisco()
+
+}
+
+void Base_permisos():{}{
+
+  <permisos> term_id() <coma> term_id() <punto> Objeto_permiso()<punto_coma>
+}
+
+void OTORGAR():{}{
+
+<otorgar> Base_permisos()
+
+}
+
+void DENEGAR():{}
+{
+  <denegar>Base_permisos()
+}
+
+
+
+
+/*------------------------ Instrucciones SSL --------------------------*/
+
+
+/*----- Declaraciones --------*/
+
+  void l_variables():{}{
+
+    "@"term_id()(<coma>"@"term_id())*
+  }
+
+
+  void INSTANCIA():{}{
+
+    "@"term_id() term_id()
+
+  }
+
+
+  void VARIABLE():{}{
+
+   l_variables()TIPO()(complemento_asignacion())? 
+
+  }
+
+
+  void DECLARAR():{}{
+     
+    <declarar> tipo_declaracion()<punto_coma>
+
+  }
+
+  void tipo_declaracion()#void:{}{
+     LOOKAHEAD(3)  INSTANCIA()
+    |LOOKAHEAD(3)  VARIABLE()
+  }
+
+  void complemento_asignacion():{}{
+
+    "=" Expresion()
+  }
+
+/*---- Asignaciones --------*/
+
+void ASIGNACION():{}{
+
+  "@"Id()complemento_asignacion()<punto_coma>
+}
+
+
+/*----- Estructuras de control --------*/
+
+void CUERPO():{}
+{
+  <abre_llave><cierra_llave>
+}
+
+//---------------- IF
+
+void SI():{}{
+
+  <si><abre_par>Condicion()<cierra_par> CUERPO()
+}
+
+void SINO():{}{
+  <sino>CUERPO()
+}
+
+
+void IF():{}
+{
+
+  SI() (SINO())?
+}
+
+//---------------- PARA
+
+void unario():{Token t;}{
+
+  t= <mas_mas>{ jjtThis.setName(t.image); }
+  |t= <menos_menos>{ jjtThis.setName(t.image); }
+}
+
+void PARA ():{}{
+
+<para><abre_par><declarar> VARIABLE() <punto_coma>Condicion()<punto_coma> unario()<cierra_par>CUERPO()
+
+}
+
+// -------------- mientras
+
+void MIENTRAS():{}
+{
+  <mientras> <abre_par> Condicion() <cierra_par>CUERPO()
+}
+
+
+//============ Detener
+
+void DETENER():{}
+{
+
+  <detener><punto_coma>
+}
+
+//----- Imprimir
+
+
+void IMPRIMIR():{}
+{
+
+  <imprimir> <abre_par>Expresion()<cierra_par><punto_coma>
+}
+
+
+//----- fecha
+
+void FECHA():{}
+{
+  <fecha><abre_par><cierra_par><punto_coma>
+}
+
+
+//----- fechahora
+
+void FECHA_HORA():{}
+{
+  <fecha_hora><abre_par><cierra_par><punto_coma>
+}
+
+
+//------ Contar
+
+void CONTAR():{}
+{
+  <contar><abre_par>"<""<"SELECCIONAR()">"">" <cierra_par><punto_coma>
+}
+
+//------ bACKUPS
+void BACK_USQLDUMP():{}{
+
+<usqldump> term_id() term_id()<punto_coma>
+
+}
+
+void BACK_COMPLETO():{}{
+<completo>term_id() term_id()<punto_coma>
+
+}
+
+void op_backup()#void:{}{
+
+  BACK_COMPLETO()
+  |BACK_USQLDUMP()
+}
+
+void backup()#void:{}{
+
+  <backup>op_backup()
+}
+
+// ------------- Restaurar
+
+void REST_USQLDUMP():{}{
+
+<usqldump>Cadena()<punto_coma>
+
+}
+
+void REST_COMPLETO():{}{
+  
+<completo>Cadena()<punto_coma>
+
+}
+
+
+void op_restauracion()#void:{}{
+
+  REST_COMPLETO()
+  |REST_USQLDUMP()
+}
+
+void restaurar()#void:{}{
+
+  <restaurar>op_restauracion()
+}
+
+/*----------------------- Inicio Condicion --------------------------*/
+
+void Condicion():{}
+{
+  ExpSuma1()
+}
+
+void ExpSuma1()#void :{}
+{
+  ( ExpMult1() ( LOOKAHEAD(2)<OR>  ExpMult1() )* )  #Or(>1)
+}
+
+void ExpMult1()#void : {}
+{
+    ( Term_Condicion() ( LOOKAHEAD(2)<AND>  Term_Condicion() )* )  #And(>1)
+}
+
+
+void Term_Condicion()#void:{}
+{
+   LOOKAHEAD(2)Nuva_Condicion()
+  |LOOKAHEAD(2)valorBool()
+  |<NOT> Nuva_CondicionNOT()
+   
+}
+
+void Nuva_CondicionNOT():{}
+{
+  LOOKAHEAD(3)Nuva_Condicion()
+  |LOOKAHEAD(3)Condicion()
+}
+
+void Nuva_Condicion():{}
+{
+  LOOKAHEAD(3)<abre_par>Condicion()<cierra_par>
+  |LOOKAHEAD(3)Expresion() Operador() Expresion()
+  //|LOOKAHEAD (2) valorBool()
+}
+
+void valorBool():{Token t;}{
+   t=<NUM>{ jjtThis.setName(t.image); }
+   |t=<verdadero>{ jjtThis.setName(t.image); }
+   |t=<falso>{ jjtThis.setName(t.image); }
+
+}
+
+void Operador() #Operador: {Token t; }
+{
+    t = "<" { jjtThis.setName(t.image); }
+  | t = ">" { jjtThis.setName(t.image); }
+  | t = "<=" { jjtThis.setName(t.image); }
+  | t = ">=" { jjtThis.setName(t.image); }
+  | t = "==" { jjtThis.setName(t.image); }
+  | t = "!=" { jjtThis.setName(t.image); }
+}
+
+
+
+
+
+/*------------------  Inicio Expresion -------------------------*/
+
+void Expresion():{}
+{
+	ExpSuma()	
+}
+
+void ExpSuma()#void:{}
+{
+	(ExpResta() (LOOKAHEAD(2)<S_MAS> ExpResta())*) #Suma (>1)
+
+} 
+
+void ExpResta()#void:{}
+{
+	(ExpMulti() (LOOKAHEAD(2)<S_MENOS> ExpMulti())*) #Resta (>1)
+
+} 
+
+
+void ExpMulti()#void:{}
+{
+	(ExpDiv() (LOOKAHEAD(2)<S_POR> ExpDiv())*) #Multiplicacion (>1)
+
+} 
+
+
+void ExpDiv()#void:{}
+{
+	(ExpPot() (LOOKAHEAD(2)<S_DIV> ExpPot())*) #Division (>1)
+
+} 
+
+
+void ExpPot()#void:{}
+{
+	(Termino() (LOOKAHEAD(2)<S_POT> Termino())*) #Potencia (>1)
+
+} 
+
+
+void Termino() #void :{}
+{
+    Id()
+	|<abre_par> Expresion() <cierra_par>
+	| Decimal()
+	| Negativo()
+	| Cadena()
+  | LOOKAHEAD (3)Fecha()
+  | Numero()
+
+} 
+
+
+void Negativo ():{}
+{
+
+   <S_MENOS>Expresion()  
+}
+
+/*--------------------- Terminales de una expresion ----------------- */
+
+
+ void Decimal():{}
+ {
+ 	  Ter_Decimal()
+ }
+
+void Ter_Decimal()#Decimal:{Token t;}
+{
+    t = <DECIMAL> { jjtThis.setName(t.image); }
+}
+
+
+void Numero():{}
+{
+    Ter_Numero()
+} 
+
+void Ter_Numero() #Numero :{Token t;}
+{
+  t = <NUM> { jjtThis.setName(t.image); }
+}
+
+void Ter_Cadena() #Cadena :{Token t;}
+{
+  t = <CADENA> { jjtThis.setName(t.image); }
+}
+
+void Cadena():{}
+{
+  Ter_Cadena()
+    
+}
+
+void Fecha():{}
+{
+Ter_Numero() <S_MENOS> Ter_Numero() <S_MENOS> Ter_Numero() (Ter_Numero() <dos_puntos> Ter_Numero() <dos_puntos> Ter_Numero())?
+}
+
+
+void Id():{}{
+  
+
+  term_id() (LOOKAHEAD (2)Extra_Id())*
+}
+
+void llamada_funcion():{}
+{
+
+  <abre_par>(Parametro_Expresion())?<cierra_par>
+}
+
+void id_extra():{}
+{
+  <punto> term_id()
+}
+
+
+void term_id() #term_id :{Token t;}
+{
+  t = <id> { jjtThis.setName(t.image); }
+}
+
+
+void Extra_Id()#void:{}
+{
+  llamada_funcion()
+  |id_extra()
+}
+
+void Parametro_Expresion():{}
+{
+  Expresion() (<coma> Expresion())*
+}

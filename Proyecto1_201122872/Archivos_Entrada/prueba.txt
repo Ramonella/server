@@ -1,0 +1,1 @@
+CREAR OBJETO objeto_pruebas(TEXT atri1, INTEGER atri2);
