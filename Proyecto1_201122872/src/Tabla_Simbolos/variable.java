@@ -27,4 +27,10 @@ public class variable extends Simbolo {
     }
     
     
+    @Override
+    public String getCad(){
+        return "Nombre: "+ this.nombre+
+                "\nTipo: "+this.tipo+
+                "\nValor: "+ this.valor+"\n";
+    }
 }

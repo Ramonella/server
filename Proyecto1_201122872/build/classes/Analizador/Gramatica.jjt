@@ -180,11 +180,17 @@ SimpleNode Start():{}{
 }
 
 void Inicio():{}{
-archivo()
+//archivo()
  // Condicion()
+  INSTRUCCION()
 }
 
+void INSTRUCCION():{}{
+   DECLARAR()
+  |ASIGNACION()
+   
 
+}
 
 
 
@@ -207,8 +213,7 @@ void inst_archivo()#void:{}{
   |OTORGAR()
   |DENEGAR()
   //ssl
-  |DECLARAR()
-  |ASIGNACION()
+  
 
 }
 

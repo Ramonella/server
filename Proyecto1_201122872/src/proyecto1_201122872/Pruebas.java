@@ -48,7 +48,7 @@ public class Pruebas {
         BufferedReader br = null;
         String cadena = "";
         try {
-            archivo = new File("/home/alina/Documentos/Repositorios/USQL/Proyecto1_201122872/Archivos_Entrada/prueba.txt");
+            archivo = new File("/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/Archivos_Entrada/prueba.txt");
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             // Lectura del fichero

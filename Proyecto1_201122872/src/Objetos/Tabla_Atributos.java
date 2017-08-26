@@ -16,12 +16,30 @@ import static proyecto1_201122872.Proyecto1_201122872.l_errores;
  */
 public class Tabla_Atributos {
     
-    private final LinkedList<atributo_objeto> l_atributos;
-    private final String nombre_objeto;
+   public LinkedList<atributo_objeto> l_atributos;
+   public String nombre_objeto;
     
     public Tabla_Atributos(String nombre){
         this.l_atributos= new LinkedList();
         this.nombre_objeto= nombre;
+    }
+    
+    public Tabla_Atributos(){
+        this.l_atributos= new LinkedList();
+        this.nombre_objeto="";
+    }
+    
+    public Tabla_Atributos clonar(){
+        
+        Tabla_Atributos atribitos = new Tabla_Atributos();
+        atribitos.nombre_objeto= this.nombre_objeto;
+        atributo_objeto nuevo;
+        for(atributo_objeto atr : l_atributos){
+            nuevo = atr.clonar();
+            atribitos.insert(nuevo);
+        }
+        
+        return atribitos;
     }
     
     private boolean exist(String name){

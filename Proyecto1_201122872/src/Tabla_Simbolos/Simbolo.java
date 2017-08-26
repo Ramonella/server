@@ -26,6 +26,8 @@ public class Simbolo {
     }
     
     
+    public String getCad(){return "";}
+    
     public Simbolo getElemento(String tipo){
         if(tipo.equalsIgnoreCase("text") ||
                 tipo.equalsIgnoreCase("integer")||

@@ -24,6 +24,21 @@ public class atributo_objeto {
        }
     }
     
+    public atributo_objeto(){
+        this.nombre="";
+        this.tipo="";
+        this.valor=null;
+    }
+    public atributo_objeto clonar(){
+        
+        atributo_objeto  retorno = new atributo_objeto();
+        retorno.nombre=this.nombre;
+        retorno.tipo= this.tipo;
+        retorno.valor= this.valor;
+        return retorno;
+        
+    } 
+    
     public String getCadena_atributo(){
         return  "<"+ this.tipo+"> "+this.nombre+" </"+this.tipo+">\n";
         

@@ -6,7 +6,10 @@ package Analizador;
 import Base_Datos.objeto_base;
 import Condiciones.Resolutor_Condicion;
 import Condiciones.Resolutor_Logica;
+import Instrucciones.Declaracion;
 import Objetos.Objeto;
+import Tabla_Simbolos.Simbolo;
+import Tabla_Simbolos.tabla_simbolos;
 import Tablas.Tabla;
 
 
@@ -90,11 +93,12 @@ public class SimpleNode implements Node {
                 SimpleNode n = (SimpleNode) children[i];
               
                 if (n != null) {
-                    if (n.toString().equals("CREAR")) {
+                    if (n.toString().equals("DECLARAR")) {
                         
-                        
-                         System.out.println("REsultado:\n " +crear_objetos_usql((SimpleNode)n.jjtGetChild(0)).getXML());
-                        
+                        ejecutar_sentencia((SimpleNode)n.jjtGetChild(0));
+                        //System.out.println("REsultado:\n " +crear_objetos_usql((SimpleNode)n.jjtGetChild(0)).getXML());
+                        System.out.println("no.. " + tabla.l_simbolos.size());
+                        tabla.imprimir();
                     }
                    n.dump(prefix + " ");
                   
@@ -127,6 +131,38 @@ public class SimpleNode implements Node {
         }
     }
      */
+     tabla_simbolos tabla= new tabla_simbolos();
+    public void ejecutar_sentencia(SimpleNode nodo){
+       
+        switch(nodo.toString()){
+            case "VARIABLE":{
+                
+                int no_hijos = nodo.jjtGetNumChildren();
+                String tipo= nodo.jjtGetChild(1).toString();
+                Declaracion decla; 
+                if(no_hijos==2){
+                    //no posee expresion
+                    for (int i = 0; i < nodo.jjtGetChild(0).jjtGetNumChildren(); i++) {
+                        decla= new Declaracion(tipo,nodo.jjtGetChild(0).jjtGetChild(i).toString());
+                        decla.Ejecutar(tabla);
+                    }
+                    
+                }else if(no_hijos==3){
+                    //posee expresion
+                }
+                
+                break;
+            }
+            case "INSTANCIA":{
+                break;
+            }
+            
+            case "DECLARAR":{
+                ejecutar_sentencia((SimpleNode)nodo.jjtGetChild(0));
+            }
+        }
+        
+    }
     
     
     public objeto_base crear_objetos_usql(SimpleNode nodo_aux){

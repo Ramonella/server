@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tabla_Simbolos;
+package Instrucciones;
 
 /**
  *
  * @author alina
  */
-public class objeto_instancia extends Simbolo{
-    
-    
-    public objeto_instancia(){
-        
-    }
+public class Instancia {
     
 }

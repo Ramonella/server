@@ -43,7 +43,11 @@ public class tabla_simbolos {
         return false;
     }
     
-    
+    public void imprimir(){
+        for(Simbolo sim: l_simbolos){
+            System.out.println(sim.getCad());
+        }
+    }
     
     
 }
