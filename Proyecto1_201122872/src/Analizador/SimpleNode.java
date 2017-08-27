@@ -3,15 +3,17 @@
 package Analizador;
 
 
+import Base_Datos.base_datos;
 import Base_Datos.objeto_base;
 import Condiciones.Resolutor_Condicion;
 import Condiciones.Resolutor_Logica;
+import Ejecucion.Global;
 import Instrucciones.Declaracion;
 import Objetos.Objeto;
 import Tabla_Simbolos.Simbolo;
 import Tabla_Simbolos.tabla_simbolos;
 import Tablas.Tabla;
-
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 
 public class SimpleNode implements Node {
@@ -93,12 +95,12 @@ public class SimpleNode implements Node {
                 SimpleNode n = (SimpleNode) children[i];
               
                 if (n != null) {
-                    if (n.toString().equals("DECLARAR")) {
+                    if (n.toString().equals("archivo")) {
                         
-                        ejecutar_sentencia((SimpleNode)n.jjtGetChild(0));
+                        ejecutar((SimpleNode)n);
                         //System.out.println("REsultado:\n " +crear_objetos_usql((SimpleNode)n.jjtGetChild(0)).getXML());
-                        System.out.println("no.. " + tabla.l_simbolos.size());
-                        tabla.imprimir();
+                        //System.out.println("no.. " + tabla.l_simbolos.size());
+                        //tabla.imprimir();
                     }
                    n.dump(prefix + " ");
                   
@@ -109,8 +111,18 @@ public class SimpleNode implements Node {
     }//*/
 
     
+    public void ejecutar(SimpleNode nodo){
+        for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
+            Ejecutar_Instruccion_Global((SimpleNode)nodo.jjtGetChild(i));
+            
+        }
+    }
+    
     
     public void Ejecutar_Instruccion_Global(SimpleNode nodo){
+        
+        
+        
         
         /*
         void inst_archivo()#void:{}{
@@ -137,10 +149,17 @@ public class SimpleNode implements Node {
         switch(nodo.toString()){
             
             case "CREAR":{
+                Global creador= new Global();
+                objeto_base nuevo = creador.crear_objetos_usql((SimpleNode)nodo.jjtGetChild(0));
+                glob.add_elemento_base_actual(nuevo);
+                
                 
             }
             case "USAR":{
-                
+              boolean band =  glob.usar_base(nodo.jjtGetChild(0).toString());
+              if(band){
+                  glob.agregarConsola("El usuario, utilizara la base de datos "+ nodo.jjtGetChild(0).toString());
+              }
             }
         }
         

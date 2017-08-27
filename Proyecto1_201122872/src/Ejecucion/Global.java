@@ -117,42 +117,4 @@ public class Global {
     }
     
     
-    
-    public void  Ejecutar(SimpleNode nodo){
-        
-        /*
-        void P_CREAR()#void:{}{
-   BASE()
-  |TABLA()
-  |OBJETO()
-  |PROCEDIMIENTO()
-  |FUNCION()
-  |USUARIO()
-}
-        */
-        
-        switch(nodo.toString()){
-            
-            case "CREAR":{
-                
-                break;
-            }
-            
-            
-            
-          
-            
-            
-            
-            
-            case "USUARIO":{
-                
-                break;
-            }
-            
-        }
-        
-        
-    }
-    
 }

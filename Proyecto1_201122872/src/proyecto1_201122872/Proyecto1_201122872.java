@@ -29,6 +29,9 @@ public class Proyecto1_201122872 {
         Pruebas nueva = new Pruebas();
         nueva.Analizar();
         glob.l_errores.PrintErrores();
+        System.out.println("Numer de elementos en la base actual"+ glob.base_actual.objetos_usql.elementos.size());
+        System.out.println("Numer de bases de datos"+ glob.l_bases.lista_bases.size());
+       
     }
     
     

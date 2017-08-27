@@ -11,7 +11,7 @@ package Base_Datos;
  */
 public class base_datos extends objeto_base{
     
-    public String nombre;
+    
     public lista_elementos objetos_usql;
 
     

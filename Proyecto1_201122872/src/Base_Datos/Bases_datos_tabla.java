@@ -21,6 +21,17 @@ public class Bases_datos_tabla {
         
     }
     
+     public base_datos getBase(String nombre){
+        for(base_datos base : lista_bases){
+            if(base.nombre.equalsIgnoreCase(nombre))
+                return base;
+        }
+        
+        return null;
+    }
+    
+    
+   
     
     public boolean existe(String nombre){
         for(base_datos base : lista_bases){

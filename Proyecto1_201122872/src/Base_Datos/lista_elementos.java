@@ -6,6 +6,7 @@
 package Base_Datos;
 
 import java.util.LinkedList;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -24,7 +25,27 @@ public class lista_elementos {
         
     }
     
+    public boolean existe(String nombre){
+        for(objeto_base elem: elementos){
+            if(elem.nombre.equalsIgnoreCase(nombre)){
+                return true;
+            }
+        }
+        return false;
+    }
     
     
+    public boolean insertar_elemento(objeto_base nuevo){
+        
+        if(!(existe(nuevo.nombre))){
+            elementos.add(nuevo);
+            return true;
+        }else{
+          
+            glob.l_errores.agregar_error("No se pudo crear el elmento "+ nuevo.nombre+", ya existe.");
+            return false;
+        }
+        
+    }
     
 }

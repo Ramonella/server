@@ -15,7 +15,7 @@ import Objetos.Tabla_Atributos;
  */
 public class Funcion extends objeto_base{
     
-    public String nombre;
+   
     public Tabla_Atributos parametros;
     public SimpleNode cuerpo;
     public String tipo_retorno;

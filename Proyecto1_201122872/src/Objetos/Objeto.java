@@ -15,7 +15,7 @@ import Objetos.atributo_objeto;
  */
 public class Objeto extends objeto_base {
     
-    public String nombre;
+   
     public Tabla_Atributos atributos;
 
     public Objeto(String nombre) {

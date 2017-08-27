@@ -14,7 +14,7 @@ import Base_Datos.objeto_base;
  */
 public class Tabla extends objeto_base{
     
-    public String nombre;
+   
     public lista_campos campos;
     
     public Tabla(String nombre){

@@ -1,3 +1,9 @@
+CREAR BASE_DATOS base1;
+CREAR BASE_DATOS Ejemplo1;
+CREAR BASE_DATOS Ejemplo2;
+
+USAR Ejemplo2;
+
 CREAR FUNCION crearDireccion () Direccion{#*
 DECLARAR @direc DIRECCION;
 @direc.calle = @calle;
@@ -6,3 +12,50 @@ DECLARAR @direc DIRECCION;
 @direc.descripcion = @descripcion;
 RETORNO @direc;*#
 }
+
+CREAR FUNCION crearDireccion () Direccion{#*
+DECLARAR @direc DIRECCION;
+@direc.calle = @calle;
+@direc.avenida = @avenida;
+@direc.nombre = @nombre;
+@direc.descripcion = @descripcion;
+RETORNO @direc;*#
+}
+
+CREAR TABLA Estudiante (
+INTEGER id Llave_Primaria Autoincrementable,
+TEXT Nombre No Nulo,
+DATE fh_nac No Nulo,
+BOOL trabaja,
+Direccion direccion);
+
+CREAR TABLA Curso(
+INTEGER id Llave_Primaria Autoincrementable,
+TEXT Nombre No Nulo,
+INTEGER creditos No Nulo);
+
+CREAR TABLA Asignacion(
+INTEGER id Llave_Primaria Autoincrementable,
+DATETIME fh_Asignacion No Nulo,
+INTEGER id_estudiante Llave_Foranea Estudiante,
+INTEGER id_curso Llave_Foranea Curso);
+
+USAR base1;
+
+CREAR PROCEDIMIENTO llenarTablas(){#*
+DECLARAR @producto INTEGER = 0;
+#inserta 10 registros en la tabla proveedor
+PARA(DECLARAR @i INTEGER = 0; @i < 10; ++){
+INSERTAR EN TABLA Proveedor(id, nombre, direccion)
+VALORES (@i, "Proveedor" + @i, "Dirección" + @i);
+29#inserta 20 productos por proveedor
+PARA(DECLARAR @j INTEGER = 0; @j < 20; ++){
+DECLARAR @precio DOUBLE = generarPrecio(@producto);
+INSERTAR EN TABLA Producto
+(@producto, "Producto" + @producto, @precio, @i);
+@producto = @producto + 1;
+}
+}*#
+}
+
+

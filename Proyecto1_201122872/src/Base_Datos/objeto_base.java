@@ -11,6 +11,7 @@ package Base_Datos;
  */
 public class objeto_base {
     
+    public String nombre;
     
     public String getXML(){
      
