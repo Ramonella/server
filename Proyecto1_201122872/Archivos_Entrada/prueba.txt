@@ -1,1 +1,8 @@
-DECLARAR @a,@b,@c,@d TEXT;
+CREAR FUNCION crearDireccion () Direccion{#*
+DECLARAR @direc DIRECCION;
+@direc.calle = @calle;
+@direc.avenida = @avenida;
+@direc.nombre = @nombre;
+@direc.descripcion = @descripcion;
+RETORNO @direc;*#
+}

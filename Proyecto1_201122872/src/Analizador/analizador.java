@@ -43,25 +43,25 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      INSTRUCCION();
+      archivo();
     } catch (Throwable jjte000) {
-    if (jjtc000) {
-      jjtree.clearNodeScope(jjtn000);
-      jjtc000 = false;
-    } else {
-      jjtree.popNode();
-    }
-    if (jjte000 instanceof RuntimeException) {
-      {if (true) throw (RuntimeException)jjte000;}
-    }
-    if (jjte000 instanceof ParseException) {
-      {if (true) throw (ParseException)jjte000;}
-    }
-    {if (true) throw (Error)jjte000;}
+  if (jjtc000) {
+    jjtree.clearNodeScope(jjtn000);
+    jjtc000 = false;
+  } else {
+    jjtree.popNode();
+  }
+  if (jjte000 instanceof RuntimeException) {
+    {if (true) throw (RuntimeException)jjte000;}
+  }
+  if (jjte000 instanceof ParseException) {
+    {if (true) throw (ParseException)jjte000;}
+  }
+  {if (true) throw (Error)jjte000;}
     } finally {
-    if (jjtc000) {
-      jjtree.closeNodeScope(jjtn000, true);
-    }
+  if (jjtc000) {
+    jjtree.closeNodeScope(jjtn000, true);
+  }
     }
   }
 
@@ -846,7 +846,20 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       jj_consume_token(procedimiento);
       term_id();
       jj_consume_token(abre_par);
-      L_VAR_PARAMETRO();
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case TEXT:
+      case INTEGER:
+      case DOUBLE:
+      case BOOL:
+      case DATE:
+      case DATETIME:
+      case id:
+        L_VAR_PARAMETRO();
+        break;
+      default:
+        jj_la1[15] = jj_gen;
+        ;
+      }
       jj_consume_token(cierra_par);
       CUERPO();
     } catch (Throwable jjte000) {
@@ -879,7 +892,20 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       jj_consume_token(funcion);
       term_id();
       jj_consume_token(abre_par);
-      L_VAR_PARAMETRO();
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case TEXT:
+      case INTEGER:
+      case DOUBLE:
+      case BOOL:
+      case DATE:
+      case DATETIME:
+      case id:
+        L_VAR_PARAMETRO();
+        break;
+      default:
+        jj_la1[16] = jj_gen;
+        ;
+      }
       jj_consume_token(cierra_par);
       TIPO();
       CUERPO();
@@ -982,7 +1008,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
           ;
           break;
         default:
-          jj_la1[15] = jj_gen;
+          jj_la1[17] = jj_gen;
           break label_7;
         }
         jj_consume_token(coma);
@@ -1048,7 +1074,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       ALTERAR_QUITAR_TABLA();
       break;
     default:
-      jj_la1[16] = jj_gen;
+      jj_la1[18] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -1153,7 +1179,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       ALTERAR_QUITAR_OBJETO();
       break;
     default:
-      jj_la1[17] = jj_gen;
+      jj_la1[19] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -1299,7 +1325,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         ALTERAR_OBJETO();
         break;
       default:
-        jj_la1[18] = jj_gen;
+        jj_la1[20] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1387,7 +1413,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
                  jjtn000.setName(t.image);
         break;
       default:
-        jj_la1[19] = jj_gen;
+        jj_la1[21] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1451,7 +1477,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
           Donde();
           break;
         default:
-          jj_la1[20] = jj_gen;
+          jj_la1[22] = jj_gen;
           ;
         }
       } else {
@@ -1466,7 +1492,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
           jj_consume_token(cierra_par);
           break;
         default:
-          jj_la1[21] = jj_gen;
+          jj_la1[23] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -1542,7 +1568,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         Donde();
         break;
       default:
-        jj_la1[22] = jj_gen;
+        jj_la1[24] = jj_gen;
         ;
       }
       jj_consume_token(punto_coma);
@@ -1582,7 +1608,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         Donde();
         break;
       default:
-        jj_la1[23] = jj_gen;
+        jj_la1[25] = jj_gen;
         ;
       }
       jj_consume_token(punto_coma);
@@ -1622,7 +1648,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         Donde_Orden();
         break;
       default:
-        jj_la1[24] = jj_gen;
+        jj_la1[26] = jj_gen;
         ;
       }
       jj_consume_token(punto_coma);
@@ -1661,7 +1687,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         L_ID();
         break;
       default:
-        jj_la1[25] = jj_gen;
+        jj_la1[27] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1755,7 +1781,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
                 jjtn000.setName(t.image);
         break;
       default:
-        jj_la1[26] = jj_gen;
+        jj_la1[28] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1776,7 +1802,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       asterisco();
       break;
     default:
-      jj_la1[27] = jj_gen;
+      jj_la1[29] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -1893,7 +1919,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
           ;
           break;
         default:
-          jj_la1[28] = jj_gen;
+          jj_la1[30] = jj_gen;
           break label_8;
         }
         jj_consume_token(coma);
@@ -1964,7 +1990,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         complemento_asignacion();
         break;
       default:
-        jj_la1[29] = jj_gen;
+        jj_la1[31] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -2180,7 +2206,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         SINO();
         break;
       default:
-        jj_la1[30] = jj_gen;
+        jj_la1[32] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -2225,7 +2251,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
                      jjtn000.setName(t.image);
         break;
       default:
-        jj_la1[31] = jj_gen;
+        jj_la1[33] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2500,7 +2526,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       BACK_USQLDUMP();
       break;
     default:
-      jj_la1[32] = jj_gen;
+      jj_la1[34] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2581,7 +2607,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       REST_USQLDUMP();
       break;
     default:
-      jj_la1[33] = jj_gen;
+      jj_la1[35] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2707,7 +2733,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         Nuva_CondicionNOT();
         break;
       default:
-        jj_la1[34] = jj_gen;
+        jj_la1[36] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2814,7 +2840,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
                jjtn000.setName(t.image);
         break;
       default:
-        jj_la1[35] = jj_gen;
+        jj_la1[37] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2869,7 +2895,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
                jjtn000.setName(t.image);
         break;
       default:
-        jj_la1[36] = jj_gen;
+        jj_la1[38] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -3114,7 +3140,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       Cadena();
       break;
     default:
-      jj_la1[37] = jj_gen;
+      jj_la1[39] = jj_gen;
       if (jj_2_17(3)) {
         Fecha();
       } else {
@@ -3123,7 +3149,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
           Numero();
           break;
         default:
-          jj_la1[38] = jj_gen;
+          jj_la1[40] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -3316,7 +3342,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         Ter_Numero();
         break;
       default:
-        jj_la1[39] = jj_gen;
+        jj_la1[41] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -3394,7 +3420,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
         Parametro_Expresion();
         break;
       default:
-        jj_la1[40] = jj_gen;
+        jj_la1[42] = jj_gen;
         ;
       }
       jj_consume_token(cierra_par);
@@ -3474,7 +3500,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       id_extra();
       break;
     default:
-      jj_la1[41] = jj_gen;
+      jj_la1[43] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -3494,7 +3520,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
           ;
           break;
         default:
-          jj_la1[42] = jj_gen;
+          jj_la1[44] = jj_gen;
           break label_17;
         }
         jj_consume_token(coma);
@@ -4225,7 +4251,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
   private Token jj_scanpos, jj_lastpos;
   private int jj_la;
   private int jj_gen;
-  final private int[] jj_la1 = new int[43];
+  final private int[] jj_la1 = new int[45];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static private int[] jj_la1_2;
@@ -4237,16 +4263,16 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       jj_la1_init_3();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x0,0x30001000,0x30001000,0x0,0x0,0x0,0x0,0x1f8000,0x1f8000,0x1f8000,0x178000,0x1000,0x2e06000,0x0,0x0,0x0,0xc0000000,0xc0000000,0x2204000,0x2206000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
+      jj_la1_0 = new int[] {0x0,0x30001000,0x30001000,0x0,0x0,0x0,0x0,0x1f8000,0x1f8000,0x1f8000,0x178000,0x1000,0x2e06000,0x0,0x0,0x0,0x0,0x0,0xc0000000,0xc0000000,0x2204000,0x2206000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x40000,0x302aa,0x302aa,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x100,0x0,0x100,0x100,0x100,0x0,0x6000,0x0,0x0,0x0,0x100000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
+      jj_la1_1 = new int[] {0x40000,0x302aa,0x302aa,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x100,0x0,0x100,0x100,0x100,0x0,0x6000,0x0,0x0,0x0,0x100000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
    }
    private static void jj_la1_init_2() {
-      jj_la1_2 = new int[] {0x0,0x0,0x0,0x1f8,0x1000000,0x1000000,0x1000000,0x0,0x0,0x0,0x0,0x0,0x0,0x1f8,0x1f8,0x1000000,0x0,0x0,0x0,0x0,0x0,0xe0420000,0x0,0x0,0x0,0x40000,0x0,0x40000,0x1000000,0x0,0x0,0xc000,0x3,0x3,0x800,0x40003000,0x0,0xa0420000,0x40000000,0x40000000,0xe0420000,0x2400000,0x1000000,};
+      jj_la1_2 = new int[] {0x0,0x0,0x0,0x1f8,0x1000000,0x1000000,0x1000000,0x0,0x0,0x0,0x0,0x0,0x0,0x1f8,0x1f8,0x1f8,0x1f8,0x1000000,0x0,0x0,0x0,0x0,0x0,0xe0420000,0x0,0x0,0x0,0x40000,0x0,0x40000,0x1000000,0x0,0x0,0xc000,0x3,0x3,0x800,0x40003000,0x0,0xa0420000,0x40000000,0x40000000,0xe0420000,0x2400000,0x1000000,};
    }
    private static void jj_la1_init_3() {
-      jj_la1_3 = new int[] {0x10,0x0,0x0,0x2,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x2,0x2,0x0,0x0,0x0,0x0,0x0,0x0,0x2,0x0,0x0,0x0,0x2,0x0,0x2,0x0,0x20,0x0,0x0,0x0,0x0,0x0,0x0,0xfc0,0x2,0x0,0x0,0x2,0x0,0x0,};
+      jj_la1_3 = new int[] {0x10,0x0,0x0,0x2,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x2,0x2,0x2,0x2,0x0,0x0,0x0,0x0,0x0,0x0,0x2,0x0,0x0,0x0,0x2,0x0,0x2,0x0,0x20,0x0,0x0,0x0,0x0,0x0,0x0,0xfc0,0x2,0x0,0x0,0x2,0x0,0x0,};
    }
   final private JJCalls[] jj_2_rtns = new JJCalls[18];
   private boolean jj_rescan = false;
@@ -4263,7 +4289,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 43; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 45; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -4279,7 +4305,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 43; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 45; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -4290,7 +4316,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 43; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 45; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -4302,7 +4328,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 43; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 45; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -4312,7 +4338,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 43; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 45; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -4323,7 +4349,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 43; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 45; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -4443,7 +4469,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 43; i++) {
+    for (int i = 0; i < 45; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {

@@ -9,7 +9,7 @@ package Base_Datos;
  *
  * @author alina
  */
-public class base_datos {
+public class base_datos extends objeto_base{
     
     public String nombre;
     public lista_elementos objetos_usql;

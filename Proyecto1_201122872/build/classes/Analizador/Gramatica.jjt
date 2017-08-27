@@ -180,9 +180,9 @@ SimpleNode Start():{}{
 }
 
 void Inicio():{}{
-//archivo()
+archivo()
  // Condicion()
-  INSTRUCCION()
+ // INSTRUCCION()
 }
 
 void INSTRUCCION():{}{
@@ -350,13 +350,13 @@ void OBJETO():{}
 
 void PROCEDIMIENTO():{}
 {
-  <procedimiento> term_id() <abre_par> L_VAR_PARAMETRO() <cierra_par> CUERPO()
+  <procedimiento> term_id() <abre_par> (L_VAR_PARAMETRO())? <cierra_par> CUERPO()
 }
 
 
 void FUNCION():{}
 {
-  <funcion> term_id() <abre_par> L_VAR_PARAMETRO() <cierra_par> TIPO() CUERPO()
+  <funcion> term_id() <abre_par> (L_VAR_PARAMETRO())? <cierra_par> TIPO() CUERPO()
 }
 
 void USUARIO():{}{

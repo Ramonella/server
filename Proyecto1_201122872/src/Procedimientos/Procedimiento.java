@@ -5,12 +5,32 @@
  */
 package Procedimientos;
 
+import Analizador.SimpleNode;
 import Base_Datos.objeto_base;
+import Objetos.Tabla_Atributos;
 
 /**
  *
  * @author alina
  */
 public class Procedimiento extends objeto_base {
+    
+    public String nombre;
+    public Tabla_Atributos parametros;
+    public SimpleNode cuerpo;
+  
+    
+    public Procedimiento(String nombre, SimpleNode cuerpo){
+        
+        this.nombre=nombre;
+        this.cuerpo=cuerpo;
+        this.parametros= new Tabla_Atributos();
+    }
+    
+    public void addParametros(SimpleNode pars){
+        this.parametros.guardar_atributos(pars);
+    }
+    
+    
     
 }

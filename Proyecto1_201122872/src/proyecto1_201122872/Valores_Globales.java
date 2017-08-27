@@ -5,6 +5,7 @@
  */
 package proyecto1_201122872;
 
+import Base_Datos.Bases_datos_tabla;
 import Base_Datos.base_datos;
 import Errores.Tabla_Errores;
 import Usuarios.Usuario;
@@ -16,8 +17,11 @@ import Usuarios.Usuario;
 public class Valores_Globales {
     
     public static Tabla_Errores l_errores;
-    public static  Usuario sesion;
+    public static Usuario sesion;
     public static base_datos base_actual;
     public static String log_consola="";
+    public static Bases_datos_tabla l_bases;
+    
+    
     
 }
