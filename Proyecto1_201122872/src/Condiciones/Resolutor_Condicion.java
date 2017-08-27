@@ -10,7 +10,7 @@ import Clases_resolver_expresiones.Fecha;
 import Clases_resolver_expresiones.FechaTime;
 import Clases_resolver_expresiones.resolver_expresiones;
 import Errores.ErrorE;
-import static proyecto1_201122872.Proyecto1_201122872.l_errores;
+import static proyecto1_201122872.Valores_Globales.l_errores;
 
 /**
  *

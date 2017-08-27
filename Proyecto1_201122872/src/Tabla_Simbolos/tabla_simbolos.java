@@ -7,7 +7,7 @@ package Tabla_Simbolos;
 
 import Base_Datos.objeto_base;
 import java.util.LinkedList;
-import static proyecto1_201122872.Proyecto1_201122872.l_errores;
+import static proyecto1_201122872.Valores_Globales.l_errores;
 
 /**
  *

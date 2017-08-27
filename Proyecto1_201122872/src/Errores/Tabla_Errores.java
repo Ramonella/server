@@ -6,7 +6,7 @@
 package Errores;
 import java.util.List;
 import java.util.ArrayList;
-import static proyecto1_201122872.Proyecto1_201122872.l_errores;
+import static proyecto1_201122872.Valores_Globales.l_errores;
 
 /**
  *

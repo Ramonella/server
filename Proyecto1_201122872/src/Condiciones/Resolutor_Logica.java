@@ -7,7 +7,7 @@ package Condiciones;
 
 import Analizador.SimpleNode;
 import Clases_resolver_expresiones.resolver_expresiones;
-import static proyecto1_201122872.Proyecto1_201122872.l_errores;
+import static proyecto1_201122872.Valores_Globales.l_errores;
 import Errores.ErrorE;
 
 

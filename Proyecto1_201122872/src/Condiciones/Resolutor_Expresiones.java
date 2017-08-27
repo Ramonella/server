@@ -14,7 +14,7 @@ import Clases_resolver_expresiones.Potencia;
 import Clases_resolver_expresiones.Resta;
 import Clases_resolver_expresiones.Suma;
 import Errores.ErrorE;
-import static proyecto1_201122872.Proyecto1_201122872.l_errores;
+import static proyecto1_201122872.Valores_Globales.l_errores;
 
 /**
  *
