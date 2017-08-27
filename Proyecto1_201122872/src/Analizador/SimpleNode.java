@@ -97,7 +97,7 @@ public class SimpleNode implements Node {
                 if (n != null) {
                     if (n.toString().equals("archivo")) {
                         
-                        ejecutar((SimpleNode)n);
+                        //ejecutar((SimpleNode)n);
                         //System.out.println("REsultado:\n " +crear_objetos_usql((SimpleNode)n.jjtGetChild(0)).getXML());
                         //System.out.println("no.. " + tabla.l_simbolos.size());
                         //tabla.imprimir();

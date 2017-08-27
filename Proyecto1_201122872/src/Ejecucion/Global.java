@@ -100,6 +100,13 @@ public class Global {
                return nueva_tabla;
                 
             }
+            case "USUARIO":{
+                
+                String nombre = nodo_aux.jjtGetChild(0).toString();
+                String pass = nodo_aux.jjtGetChild(1).jjtGetChild(0).toString();
+                Usuario nuevo = new Usuario(nombre,pass);
+                return nuevo;
+            }
             
             case "OBJETO":{
                 Objeto obj;

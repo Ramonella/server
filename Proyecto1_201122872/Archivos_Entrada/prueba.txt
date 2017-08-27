@@ -1,3 +1,6 @@
+CREAR USUARIO alina COLOCAR password = "pedrito";
+#*
+
 CREAR BASE_DATOS base1;
 CREAR BASE_DATOS Ejemplo1;
 CREAR BASE_DATOS Ejemplo2;
@@ -59,3 +62,4 @@ INSERTAR EN TABLA Producto
 }
 
 
+*#

@@ -63,6 +63,9 @@ public class Valores_Globales {
             else
               agregarConsola("No se ha podido crear la nueva base de datos "+ nuevo.nombre+", ya existe");  
             
+        }else if(nuevo instanceof Usuario){
+            
+            
         }else{
           if(this.base_actual.objetos_usql.insertar_elemento(nuevo))  
           agregarConsola("Se ha creado el elemento "+ nuevo.nombre+" con exito en la base de datos "+ base_actual.nombre);

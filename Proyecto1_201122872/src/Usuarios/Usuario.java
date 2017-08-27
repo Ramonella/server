@@ -5,13 +5,14 @@
  */
 package Usuarios;
 
+import Base_Datos.objeto_base;
+
 /**
  *
  * @author alina
  */
-public class Usuario {
+public class Usuario extends objeto_base{
     
-    public String nombre;
     public String password;
     
     public Usuario(){
