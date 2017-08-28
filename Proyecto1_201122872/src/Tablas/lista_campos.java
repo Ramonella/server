@@ -7,7 +7,7 @@ package Tablas;
 
 import Analizador.SimpleNode;
 import java.util.LinkedList;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -61,7 +61,7 @@ public class lista_campos {
             return true;
         }
         
-        l_errores.agregar_error("El campo "+ nuevo.nombre+" ya existe dentro de la tabla "+nombre_tabla);
+        glob.l_errores.agregar_error("El campo "+ nuevo.nombre+" ya existe dentro de la tabla "+nombre_tabla);
         return false;
     }
     

@@ -16,12 +16,20 @@ import Usuarios.Usuario;
  */
 public class Valores_Globales {
     
-    public static Tabla_Errores l_errores;
-    public static Usuario sesion;
-    public static base_datos base_actual;
-    public static String log_consola="";
-    public static Bases_datos_tabla l_bases;
+    public  Tabla_Errores l_errores;
+    public  Usuario sesion;
+    public  base_datos base_actual;
+    public  String log_consola="";
+    public  Bases_datos_tabla l_bases;
     
+    
+    public Valores_Globales(){
+        this.l_errores= new Tabla_Errores();
+        this.sesion= new Usuario();
+        this.base_actual= new base_datos();
+        log_consola="";
+        this.l_bases= new Bases_datos_tabla();
+    }
     
     
 }

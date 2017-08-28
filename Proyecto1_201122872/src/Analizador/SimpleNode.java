@@ -108,6 +108,46 @@ public class SimpleNode implements Node {
         }
     }//*/
 
+    
+    
+    public void Ejecutar_Instruccion_Global(SimpleNode nodo){
+        
+        /*
+        void inst_archivo()#void:{}{
+ //dml
+  INSERTAR()
+  |BORRAR()
+  |ACTUALIZAR()
+  |SELECCIONAR()
+ //ddl
+  |CREAR()
+  |ELIMINAR()
+  |ALTERAR()
+  |USAR() 
+  //dml
+  |OTORGAR()
+  |DENEGAR()
+  //ssl
+  
+
+}
+        
+        */
+        
+        switch(nodo.toString()){
+            
+            case "CREAR":{
+                
+            }
+            case "USAR":{
+                
+            }
+        }
+        
+    }
+    
+    
+    
     /*   Funciones Extras  */
  /* 
    public void dump(String prefix) {
@@ -164,41 +204,7 @@ public class SimpleNode implements Node {
         
     }
     
-    
-    public objeto_base crear_objetos_usql(SimpleNode nodo_aux){
-        int  no_hijos= nodo_aux.jjtGetNumChildren();
-        
-        switch (nodo_aux.toString()){
-            case "TABLA":{
-               Tabla nueva_tabla;
-               String nombre= nodo_aux.jjtGetChild(0).toString();
-               nueva_tabla= new Tabla(nombre);
-               
-               if(no_hijos==2){
-                   //posee campos
-                   nueva_tabla.agregar_campos((SimpleNode)nodo_aux.jjtGetChild(1));
-               }
-               return nueva_tabla;
-                
-            }
-            
-            case "OBJETO":{
-                Objeto obj;
-                String nombre_objeto=nodo_aux.jjtGetChild(0).toString();
-                obj= new Objeto(nombre_objeto);
-                if(no_hijos==2){
-                    //posee atributos
-                    obj.atributos.guardar_atributos((SimpleNode)nodo_aux.jjtGetChild(1));
-                    
-                }
-                return obj;
-            }    
-        }     
-       return  null; 
-    }
-    
-    
-    
+ 
      public int Evaluar_Condicion(SimpleNode nodo_aux){
         Resolutor_Condicion condiciones= new Resolutor_Condicion();
         Resolutor_Logica logicas= new Resolutor_Logica();

@@ -6,7 +6,7 @@
 package Tablas;
 
 import Analizador.SimpleNode;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -115,7 +115,7 @@ public class Campo {
             this.nombre = n_campo.jjtGetChild(1).toString();
             this.tipo = n_campo.jjtGetChild(0).toString();
         } catch (Exception e) {
-            l_errores.agregar_error("ha ocurrido un error, no se pudo crear el campo "+ n_campo.jjtGetChild(1).toString());
+           glob.l_errores.agregar_error("ha ocurrido un error, no se pudo crear el campo "+ n_campo.jjtGetChild(1).toString());
 
         }
 

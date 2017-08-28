@@ -14,7 +14,7 @@ import Clases_resolver_expresiones.Potencia;
 import Clases_resolver_expresiones.Resta;
 import Clases_resolver_expresiones.Suma;
 import Errores.ErrorE;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -68,7 +68,7 @@ public class Resolutor_Expresiones {
                     } else {
                         String descripcion = "Error con el retorno de la suma.";
                         ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                        l_errores.insertar(nuevo);
+                        glob.l_errores.insertar(nuevo);
                     }
                 }
                 return suma;
@@ -87,7 +87,7 @@ public class Resolutor_Expresiones {
                     } else {
                         String descripcion = "Error con el retorno de la resta.";
                         ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                        l_errores.insertar(nuevo);
+                        glob.l_errores.insertar(nuevo);
                     }
                 }
                 return suma;
@@ -107,7 +107,7 @@ public class Resolutor_Expresiones {
                     } else {
                         String descripcion = "Error con el retorno de la multiplicacion.";
                         ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                        l_errores.insertar(nuevo);
+                        glob.l_errores.insertar(nuevo);
                     }
                 }
                 return suma;
@@ -127,7 +127,7 @@ public class Resolutor_Expresiones {
                     } else {
                         String descripcion = "Error con el retorno de la division.";
                         ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                        l_errores.insertar(nuevo);
+                        glob.l_errores.insertar(nuevo);
                     }
                 }
                 return suma;
@@ -147,7 +147,7 @@ public class Resolutor_Expresiones {
                     } else {
                         String descripcion = "Error con el retorno de la potencia.";
                         ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                        l_errores.insertar(nuevo);
+                        glob.l_errores.insertar(nuevo);
                     }
                 }
                 return suma;

@@ -8,7 +8,7 @@ package Objetos;
 import Analizador.SimpleNode;
 import Errores.ErrorE;
 import java.util.LinkedList;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -55,7 +55,7 @@ public class Tabla_Atributos {
         if(exist(atri.getNombre())){
             String descripcion= "En el objeto "+ this.nombre_objeto+" ya existe un atributo con el nombre de "+atri.getNombre();
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo); 
+            glob.l_errores.insertar(nuevo); 
             return false;
         }else{
            
@@ -76,7 +76,7 @@ public class Tabla_Atributos {
         }else{
             String descripcion= "En el objeto "+ this.nombre_objeto+" no existe el atributo "+nombre;
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo); 
+            glob.l_errores.insertar(nuevo); 
             return false;
         }
         

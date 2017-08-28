@@ -8,10 +8,7 @@ package proyecto1_201122872;
 import Base_Datos.base_datos;
 import Errores.Tabla_Errores;
 import Usuarios.Usuario;
-import static proyecto1_201122872.Valores_Globales.base_actual;
-import static proyecto1_201122872.Valores_Globales.l_errores;
-import static proyecto1_201122872.Valores_Globales.log_consola;
-import static proyecto1_201122872.Valores_Globales.sesion;
+
 
 /**
  *
@@ -19,21 +16,19 @@ import static proyecto1_201122872.Valores_Globales.sesion;
  */
 public class Proyecto1_201122872 {
     
-  
+  public static Valores_Globales glob;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        glob= new Valores_Globales();
         
         
-        sesion= new Usuario();
-        base_actual= new base_datos();
-        l_errores= new Tabla_Errores();
         Pruebas nueva = new Pruebas();
         nueva.Analizar();
-        l_errores.PrintErrores();
+        glob.l_errores.PrintErrores();
     }
     
     

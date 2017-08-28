@@ -6,7 +6,7 @@
 package Clases_resolver_expresiones;
 
 import Errores.ErrorE;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -28,7 +28,7 @@ public class Division extends resolver_expresiones {
         if(esBool2(val1) && esBool2(val2)){
             String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una division.";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo);
+            glob.l_errores.insertar(nuevo);
             return "nulo";
         } else if((esEntero(tipo1)||esDecimal(tipo1)) &&
                  (esEntero(tipo2)|| esDecimal(tipo2))){
@@ -40,7 +40,7 @@ public class Division extends resolver_expresiones {
             }else{
                String descripcion = "No es valida la division entre 0, saludos :p";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo);
+            glob.l_errores.insertar(nuevo);
             return "nulo"; 
             }
         }else if (esFecha(tipo1)  && esCadena(tipo2)) {
@@ -55,7 +55,7 @@ public class Division extends resolver_expresiones {
 
             String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una division.";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo);
+            glob.l_errores.insertar(nuevo);
             return "nulo";
         }
  

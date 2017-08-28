@@ -6,7 +6,7 @@
 package Errores;
 import java.util.List;
 import java.util.ArrayList;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+
 
 /**
  *
@@ -29,7 +29,7 @@ public class Tabla_Errores {
     public void agregar_error(String error){
         
             ErrorE nuevo = new ErrorE(error, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo);
+            insertar(nuevo);
     }
     
     public void PrintErrores(){

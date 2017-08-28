@@ -6,7 +6,7 @@
 package Clases_resolver_expresiones;
 
 import Errores.ErrorE;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -30,7 +30,7 @@ public class Resta extends resolver_expresiones {
         if(esBool2(val1)&& esBool2(val2)){
             String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una resta.";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo); 
+            glob.l_errores.insertar(nuevo); 
           return "nulo"; 
         }
         else if(esEntero(tipo1)&& esEntero(tipo2)){
@@ -48,7 +48,7 @@ public class Resta extends resolver_expresiones {
         }else{
             String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una resta.";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo); 
+           glob.l_errores.insertar(nuevo); 
           return "nulo";  
         }
         

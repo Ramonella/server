@@ -6,7 +6,7 @@
 package Base_Datos;
 
 import java.util.LinkedList;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -36,7 +36,7 @@ public class Bases_datos_tabla {
             this.lista_bases.add(nueva);
             return true;
         }else{
-           l_errores.agregar_error("Error, no se ha podido crear la base con el nombre "+ nueva.nombre+", debido a que ya existe una con el mismo nombre.");
+           glob.l_errores.agregar_error("Error, no se ha podido crear la base con el nombre "+ nueva.nombre+", debido a que ya existe una con el mismo nombre.");
            return false;
         }
         

@@ -6,7 +6,7 @@
 package Clases_resolver_expresiones;
 
 import Errores.ErrorE;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -38,27 +38,27 @@ public class FechaTime {
                     } else {
                         String descripcion = "El valor de los " + this.segundos + " no es valido.";
                         ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                        l_errores.insertar(nuevo);
+                        glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 } else {
                     String descripcion = "El valor de los " + this.minutos + " no es valido.";
                     ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                    l_errores.insertar(nuevo);
+                    glob.l_errores.insertar(nuevo);
                     return false;
                 }
 
             } else {
                 String descripcion = "El valor de los " + this.horas + " no es valido.";
                 ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                l_errores.insertar(nuevo);
+                glob.l_errores.insertar(nuevo);
                 return false;
             }
 
         } else {
             String descripcion = "La fecha " + fecha.valorFecha + " posee un error.";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo);
+            glob.l_errores.insertar(nuevo);
             return false;
         }
 

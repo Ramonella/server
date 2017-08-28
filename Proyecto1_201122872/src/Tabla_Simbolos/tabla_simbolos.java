@@ -7,7 +7,7 @@ package Tabla_Simbolos;
 
 import Base_Datos.objeto_base;
 import java.util.LinkedList;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -27,7 +27,7 @@ public class tabla_simbolos {
             l_simbolos.add(nuevo);
             return true;
         }else{
-            l_errores.agregar_error("No se ha podido crear el elemento "+ nuevo.nombre+", ya existe en el contexto actual.");
+            glob.l_errores.agregar_error("No se ha podido crear el elemento "+ nuevo.nombre+", ya existe en el contexto actual.");
             return false;
         }
         

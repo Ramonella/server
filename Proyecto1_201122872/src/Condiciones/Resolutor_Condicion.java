@@ -10,7 +10,7 @@ import Clases_resolver_expresiones.Fecha;
 import Clases_resolver_expresiones.FechaTime;
 import Clases_resolver_expresiones.resolver_expresiones;
 import Errores.ErrorE;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -77,7 +77,7 @@ public class Resolutor_Condicion  extends resolver_expresiones{
              
              String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una condicion \"<\".";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo); 
+            glob.l_errores.insertar(nuevo); 
              return 0;
          }
          
@@ -104,7 +104,7 @@ public class Resolutor_Condicion  extends resolver_expresiones{
              
              String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una condicion \">\".";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo); 
+            glob.l_errores.insertar(nuevo); 
              return 0;
          }
      }
@@ -129,7 +129,7 @@ public class Resolutor_Condicion  extends resolver_expresiones{
              
              String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una condicion \">=\".";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo); 
+            glob.l_errores.insertar(nuevo); 
              return 0;
          }
      }
@@ -153,7 +153,7 @@ public class Resolutor_Condicion  extends resolver_expresiones{
              
              String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una condicion \"<=\".";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo); 
+            glob.l_errores.insertar(nuevo); 
              return 0;
          }
      }
@@ -198,7 +198,7 @@ public class Resolutor_Condicion  extends resolver_expresiones{
          }else{
               String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una condicion \"==\".";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo);
+            glob.l_errores.insertar(nuevo);
               return 0;
          }
          
@@ -247,7 +247,7 @@ public class Resolutor_Condicion  extends resolver_expresiones{
              
                String descripcion = "Los tipos, " + tipo1 + " y " + tipo2 + ", no son validos para realizar una condicion \"!=\".";
             ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-            l_errores.insertar(nuevo);
+            glob.l_errores.insertar(nuevo);
             return 0;
          }
      }

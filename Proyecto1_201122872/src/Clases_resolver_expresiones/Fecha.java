@@ -6,7 +6,7 @@
 package Clases_resolver_expresiones;
 
 import Errores.ErrorE;
-import static proyecto1_201122872.Valores_Globales.l_errores;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
@@ -41,7 +41,7 @@ public class Fecha {
                         //error
                          String descripcion = "El valor de "+ this.dia+" no es valido para enero.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -52,7 +52,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para febrero.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                     
@@ -65,7 +65,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para marzo.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -77,7 +77,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para abril.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -89,7 +89,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para mayo.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -101,7 +101,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para junio.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -113,7 +113,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para julio.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -125,7 +125,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para agosto.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -137,7 +137,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para septiembre.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -149,7 +149,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para octubre.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -161,7 +161,7 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para noviembre.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
@@ -173,14 +173,14 @@ public class Fecha {
                     else{
                          String descripcion = "El valor de "+ this.dia+" no es valido para diciembre.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                         return false;
                     }
                 }
                 default:{
                      String descripcion = "El valor de "+ this.dia+" no es un mes valido.";
                          ErrorE nuevo = new ErrorE(descripcion, "", "", "Semantico", "USQL");
-                         l_errores.insertar(nuevo);
+                         glob.l_errores.insertar(nuevo);
                     return false;
                 }
                 
