@@ -5,6 +5,8 @@
  */
 package Tabla_Simbolos;
 
+import Objetos.Tabla_Atributos;
+
 /**
  *
  * @author alina
@@ -12,8 +14,13 @@ package Tabla_Simbolos;
 public class objeto_instancia extends Simbolo{
     
     
-    public objeto_instancia(){
-        
+    Tabla_Atributos atributos = new Tabla_Atributos();
+    
+    public objeto_instancia(String nombre, String tipo){
+        this.nombre= nombre;
+        this.tipo= tipo;
     }
+    
+    
     
 }

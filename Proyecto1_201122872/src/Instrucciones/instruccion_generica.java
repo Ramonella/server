@@ -13,6 +13,7 @@ import Tabla_Simbolos.tabla_simbolos;
  */
 public class instruccion_generica {
     
+    
     public void Ejecutar(tabla_simbolos vars){
         
     }
