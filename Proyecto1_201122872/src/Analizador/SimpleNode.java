@@ -161,6 +161,7 @@ public class SimpleNode implements Node {
                   glob.agregarConsola("El usuario, utilizara la base de datos "+ nodo.jjtGetChild(0).toString());
               }
             }
+            
         }
         
     }

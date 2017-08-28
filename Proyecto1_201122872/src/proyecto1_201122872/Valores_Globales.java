@@ -9,6 +9,7 @@ import Base_Datos.Bases_datos_tabla;
 import Base_Datos.base_datos;
 import Base_Datos.objeto_base;
 import Errores.Tabla_Errores;
+import Usuarios.Tabla_Usuarios;
 import Usuarios.Usuario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,6 +26,7 @@ public class Valores_Globales {
     public  base_datos base_actual;
     public  String log_consola="";
     public  Bases_datos_tabla l_bases;
+    public Tabla_Usuarios l_usuarios;
     
     
     public Valores_Globales(){
@@ -33,6 +35,7 @@ public class Valores_Globales {
         this.base_actual= new base_datos();
         log_consola="";
         this.l_bases= new Bases_datos_tabla();
+        l_usuarios= new Tabla_Usuarios();
     }
     
     
@@ -64,7 +67,15 @@ public class Valores_Globales {
               agregarConsola("No se ha podido crear la nueva base de datos "+ nuevo.nombre+", ya existe");  
             
         }else if(nuevo instanceof Usuario){
+            if(l_usuarios.insertar((Usuario)nuevo))
+            {
+                agregarConsola("Se ha creado con exito el nuevo usuario, "+ nuevo.nombre);
+           
+                
+            }else{
+                agregarConsola("No se ha podido crear el nuevo usuario "+ nuevo.nombre+", ya existe");  
             
+            }
             
         }else{
           if(this.base_actual.objetos_usql.insertar_elemento(nuevo))  

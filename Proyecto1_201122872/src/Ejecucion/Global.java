@@ -12,6 +12,7 @@ import Funciones.Funcion;
 import Objetos.Objeto;
 import Procedimientos.Procedimiento;
 import Tablas.Tabla;
+import Usuarios.Usuario;
 
 /**
  *
