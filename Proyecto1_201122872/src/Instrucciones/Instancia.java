@@ -5,7 +5,6 @@
  */
 package Instrucciones;
 
-import Objetos.Tabla_Atributos;
 import Tabla_Simbolos.Simbolo;
 import Tabla_Simbolos.objeto_instancia;
 import Tabla_Simbolos.tabla_simbolos;

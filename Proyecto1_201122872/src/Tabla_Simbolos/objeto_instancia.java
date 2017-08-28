@@ -14,12 +14,13 @@ import Objetos.Tabla_Atributos;
 public class objeto_instancia extends Simbolo{
     
     
-    Tabla_Atributos atributos = new Tabla_Atributos();
+    Tabla_Atributos atributos;
     
-    public objeto_instancia(String nombre, String tipo){
-        this.nombre= nombre;
-        this.tipo= tipo;
+    public objeto_instancia(){
+        atributos = new Tabla_Atributos();
     }
+    
+    
     
     
     
