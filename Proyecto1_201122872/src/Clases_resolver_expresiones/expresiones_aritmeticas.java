@@ -59,34 +59,5 @@ public class expresiones_aritmeticas extends resolver_expresiones {
         return "nulo";
     }
 
-   
-
-    public Object Resolver_Resta(Object val1, Object val2) {
-        String tipo1 = comprobar_tipo(val1);
-        String tipo2 = comprobar_tipo(val2);
-
-        return "nulo";
-    }
-
-    public Object Resolver_Multiplicacion(Object val1, Object val2) {
-        String tipo1 = comprobar_tipo(val1);
-        String tipo2 = comprobar_tipo(val2);
-
-        return "nulo";
-    }
-
-    public Object Resolver_Division(Object val1, Object val2) {
-        String tipo1 = comprobar_tipo(val1);
-        String tipo2 = comprobar_tipo(val2);
-
-        return "nulo";
-    }
-
-    public Object Resolver_Potencia(Object val1, Object val2) {
-        String tipo1 = comprobar_tipo(val1);
-        String tipo2 = comprobar_tipo(val2);
-
-        return "nulo";
-    }
-
+  
 }
