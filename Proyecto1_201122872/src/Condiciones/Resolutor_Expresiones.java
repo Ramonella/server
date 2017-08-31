@@ -14,6 +14,7 @@ import Clases_resolver_expresiones.Potencia;
 import Clases_resolver_expresiones.Resta;
 import Clases_resolver_expresiones.Suma;
 import Errores.ErrorE;
+import Tabla_Simbolos.tabla_simbolos;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
@@ -25,17 +26,36 @@ public class Resolutor_Expresiones {
     public Resolutor_Expresiones() {
     }
     
+    public String[] resolver_lista(SimpleNode lista){
+        tabla_simbolos vars = new tabla_simbolos();
+        String [] retorno = new String[lista.jjtGetNumChildren()];
+        for (int i = 0; i < lista.jjtGetNumChildren(); i++) {
+            Object res= Resolver((SimpleNode)lista.jjtGetChild(i),vars);
+            if(res instanceof Fecha){
+                Fecha res2 = (Fecha)res;
+                retorno[i]= res2.valorFecha; 
+            }else if(res instanceof FechaTime){
+                FechaTime res2 = (FechaTime)res;
+                retorno[i]= res2.valor_fecha;
+                
+            }else{
+                retorno[i]= res+"";
+            }
+            
+        }
+        
+        return retorno;
+    }
     
-    
-    public Object Resolver(SimpleNode nodo) {
+    public Object Resolver(SimpleNode nodo, tabla_simbolos vars) {
         //System.out.println("Hijos de Expresion "+nodo.children.length+ nodo.toString());
 
         switch (nodo.toString()) {
             case "Expresion": {
-                return Resolver((SimpleNode) nodo.jjtGetChild(0));
+                return Resolver((SimpleNode) nodo.jjtGetChild(0),vars);
             }
 
-            case "Fecha": {
+            case "FECHA": {
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
                     aux_S[i] = (nodo.jjtGetChild(i)).toString();
@@ -59,7 +79,7 @@ public class Resolutor_Expresiones {
                 
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i));
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -78,7 +98,7 @@ public class Resolutor_Expresiones {
                 Resta elemento_suma = new Resta();
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i));
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -98,7 +118,7 @@ public class Resolutor_Expresiones {
                 Multiplicacion elemento_suma = new Multiplicacion();
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i));
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -118,7 +138,7 @@ public class Resolutor_Expresiones {
                 Division elemento_suma = new Division();
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i));
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -138,7 +158,7 @@ public class Resolutor_Expresiones {
                 Potencia elemento_suma = new Potencia();
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i));
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -164,6 +184,20 @@ public class Resolutor_Expresiones {
 
             case "Decimal": {
                 return Double.parseDouble(nodo.jjtGetChild(0).toString());
+            }
+            
+            case "VAR":{
+                String nombre =nodo.jjtGetChild(0).toString();
+                //object val = vars.
+                
+            }
+            
+            case "LLAMADA":{
+                
+            }
+            
+            case "ATRI_OBJ":{
+                
             }
 
         }//fin del switch

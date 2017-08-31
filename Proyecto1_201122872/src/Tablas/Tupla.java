@@ -2,17 +2,19 @@ package Tablas;
 
 import java.util.HashMap;
 import java.util.Map;
+import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
  *
- * @author empalacios
+ * @author alina
  */
 public class Tupla {
     private Map<String, Object> campos = new HashMap<>();
     
-    public void agregarValor(String campo, Object valor) throws Exception {
+    public void agregarValor(String campo, Object valor) {
         if (campos.containsKey(campo)) {
-            throw new Exception("El campo ya existe");
+            glob.l_errores.agregar_error("Campo ya existe");
+           
         }
         campos.put(campo, valor);
     }

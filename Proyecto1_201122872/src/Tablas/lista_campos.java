@@ -23,6 +23,16 @@ public class lista_campos {
         nombre_tabla=nombre;
     }
     
+    
+    public String[] getCampos(){
+        String []  val = new String[l_campos.size()];
+        for (int i = 0; i < l_campos.size(); i++) {
+            val[i]= l_campos.get(i).nombre;
+        }
+        
+        return val;
+    }
+    
     public void agregar_campos(SimpleNode campos){
         int hijos;
         Campo nuevo_campo;

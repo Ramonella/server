@@ -1,5 +1,25 @@
-CREAR USUARIO alina COLOCAR password = "pedrito";
-#*
+
+CREAR BASE_DATOS base1;
+USAR base1;
+
+CREAR TABLA Estudiante (
+INTEGER id Llave_Primaria Autoincrementable,
+TEXT Nombre No Nulo,
+DATE fh_nac No Nulo,
+BOOL trabaja);
+
+
+
+INSERTAR EN TABLA Estudiante (1,"Jose luis", 10-10-1994 12:12:12, 1);
+
+
+
+#INSERTAR EN TABLA estudiante (Nombre, fh_nac)VALORES ("jOSE lUIS", 10-10-1994);
+
+
+
+#*CREAR USUARIO alina COLOCAR password = "pedrito";
+
 
 CREAR BASE_DATOS base1;
 CREAR BASE_DATOS Ejemplo1;

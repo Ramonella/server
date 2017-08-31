@@ -7,6 +7,8 @@ package Tablas;
 
 import Analizador.SimpleNode;
 import Base_Datos.objeto_base;
+import Condiciones.Resolutor_Expresiones;
+import Tabla_Simbolos.tabla_simbolos;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,12 +34,32 @@ public class Tabla extends objeto_base{
         campos.agregar_campos(campos_nuevos);
 
     }
+       
     
-//    public boolean agregarTupla(SimpleNode nodo){
-//        
-//    }
+    public boolean agregarTupla(SimpleNode nodo){
+        
+        switch(nodo.toString()){
+            
+            case "forma1":{
+                tabla_simbolos nueva_tabla = new tabla_simbolos();
+                Resolutor_Expresiones exps = new Resolutor_Expresiones();
+                String [] nombres= campos.getCampos();
+                String [] valores = exps.resolver_lista((SimpleNode)nodo.jjtGetChild(0));
+                return agregarTupla(nombres,valores);  
+            }
+            case "forma2":{
+                
+            }
+            
+        }
+        
+        
+        
+        return false;
+       
+    }
     
-    private boolean agregarTupla(String[] campos, String[] valores) throws Exception {
+    private boolean agregarTupla(String[] campos, String[] valores)  {
         Tupla tupla = new Tupla();
         for (int i = 0; i < campos.length; i++) {
             tupla.agregarValor(campos[i], valores[i]);

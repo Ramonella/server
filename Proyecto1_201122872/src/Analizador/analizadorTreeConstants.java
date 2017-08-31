@@ -40,62 +40,69 @@ public interface analizadorTreeConstants
   public int JJTELIMINAR = 34;
   public int JJTOBJETO_USQL = 35;
   public int JJTINSERTAR = 36;
-  public int JJTOPCIONES_INSERTAR = 37;
-  public int JJTDONDE = 38;
-  public int JJTACTUALIZAR = 39;
-  public int JJTBORRAR = 40;
-  public int JJTSELECCIONAR = 41;
-  public int JJTTIPO_SELECCION = 42;
-  public int JJTDONDE_ORDEN = 43;
-  public int JJTASTERISCO = 44;
-  public int JJTORDEN = 45;
-  public int JJTBASE_PERMISOS = 46;
-  public int JJTOTORGAR = 47;
-  public int JJTDENEGAR = 48;
-  public int JJTL_VARIABLES = 49;
-  public int JJTINSTANCIA = 50;
-  public int JJTVARIABLE = 51;
-  public int JJTDECLARAR = 52;
-  public int JJTCOMPLEMENTO_ASIGNACION = 53;
-  public int JJTASIGNACION = 54;
-  public int JJTCUERPO = 55;
-  public int JJTSI = 56;
-  public int JJTSINO = 57;
-  public int JJTIF = 58;
-  public int JJTUNARIO = 59;
-  public int JJTPARA = 60;
-  public int JJTMIENTRAS = 61;
-  public int JJTDETENER = 62;
-  public int JJTIMPRIMIR = 63;
-  public int JJTFECHA = 64;
-  public int JJTFECHA_HORA = 65;
-  public int JJTCONTAR = 66;
-  public int JJTBACK_USQLDUMP = 67;
-  public int JJTBACK_COMPLETO = 68;
-  public int JJTREST_USQLDUMP = 69;
-  public int JJTREST_COMPLETO = 70;
-  public int JJTCONDICION = 71;
-  public int JJTOR = 72;
-  public int JJTAND = 73;
-  public int JJTNUVA_CONDICIONNOT = 74;
-  public int JJTNUVA_CONDICION = 75;
-  public int JJTVALORBOOL = 76;
-  public int JJTOPERADOR = 77;
-  public int JJTEXPRESION = 78;
-  public int JJTSUMA = 79;
-  public int JJTRESTA = 80;
-  public int JJTMULTIPLICACION = 81;
-  public int JJTDIVISION = 82;
-  public int JJTPOTENCIA = 83;
-  public int JJTNEGATIVO = 84;
-  public int JJTDECIMAL = 85;
-  public int JJTNUMERO = 86;
-  public int JJTCADENA = 87;
-  public int JJTID = 88;
-  public int JJTLLAMADA_FUNCION = 89;
-  public int JJTID_EXTRA = 90;
-  public int JJTTERM_ID = 91;
-  public int JJTPARAMETRO_EXPRESION = 92;
+  public int JJTL_TERM_ID = 37;
+  public int JJTOP_CAMPO = 38;
+  public int JJTFORMA1 = 39;
+  public int JJTFORMA2 = 40;
+  public int JJTTABLA_CAMPO = 41;
+  public int JJTDONDE = 42;
+  public int JJTACTUALIZAR = 43;
+  public int JJTBORRAR = 44;
+  public int JJTSELECCIONAR = 45;
+  public int JJTTIPO_SELECCION = 46;
+  public int JJTDONDE_ORDEN = 47;
+  public int JJTASTERISCO = 48;
+  public int JJTORDEN = 49;
+  public int JJTBASE_PERMISOS = 50;
+  public int JJTOTORGAR = 51;
+  public int JJTDENEGAR = 52;
+  public int JJTL_VARIABLES = 53;
+  public int JJTINSTANCIA = 54;
+  public int JJTVARIABLE = 55;
+  public int JJTDECLARAR = 56;
+  public int JJTCOMPLEMENTO_ASIGNACION = 57;
+  public int JJTASIGNACION = 58;
+  public int JJTCUERPO = 59;
+  public int JJTSI = 60;
+  public int JJTSINO = 61;
+  public int JJTIF = 62;
+  public int JJTUNARIO = 63;
+  public int JJTPARA = 64;
+  public int JJTMIENTRAS = 65;
+  public int JJTDETENER = 66;
+  public int JJTIMPRIMIR = 67;
+  public int JJTFECHA = 68;
+  public int JJTFECHA_HORA = 69;
+  public int JJTCONTAR = 70;
+  public int JJTBACK_USQLDUMP = 71;
+  public int JJTBACK_COMPLETO = 72;
+  public int JJTREST_USQLDUMP = 73;
+  public int JJTREST_COMPLETO = 74;
+  public int JJTCONDICION = 75;
+  public int JJTOR = 76;
+  public int JJTAND = 77;
+  public int JJTNUVA_CONDICIONNOT = 78;
+  public int JJTNUVA_CONDICION = 79;
+  public int JJTVALORBOOL = 80;
+  public int JJTOPERADOR = 81;
+  public int JJTEXPRESION = 82;
+  public int JJTSUMA = 83;
+  public int JJTRESTA = 84;
+  public int JJTMULTIPLICACION = 85;
+  public int JJTDIVISION = 86;
+  public int JJTPOTENCIA = 87;
+  public int JJTLLAMADA = 88;
+  public int JJTATRI_OBJ = 89;
+  public int JJTVAR = 90;
+  public int JJTNEGATIVO = 91;
+  public int JJTDECIMAL = 92;
+  public int JJTNUMERO = 93;
+  public int JJTCADENA = 94;
+  public int JJTID = 95;
+  public int JJTLLAMADA_FUNCION = 96;
+  public int JJTID_EXTRA = 97;
+  public int JJTTERM_ID = 98;
+  public int JJTPARAMETRO_EXPRESION = 99;
 
 
   public String[] jjtNodeName = {
@@ -136,7 +143,11 @@ public interface analizadorTreeConstants
     "ELIMINAR",
     "OBJETO_USQL",
     "INSERTAR",
-    "OPCIONES_INSERTAR",
+    "l_term_id",
+    "op_campo",
+    "forma1",
+    "forma2",
+    "tabla_campo",
     "Donde",
     "ACTUALIZAR",
     "BORRAR",
@@ -183,6 +194,9 @@ public interface analizadorTreeConstants
     "Multiplicacion",
     "Division",
     "Potencia",
+    "LLAMADA",
+    "ATRI_OBJ",
+    "VAR",
     "Negativo",
     "Decimal",
     "Numero",
@@ -194,4 +208,4 @@ public interface analizadorTreeConstants
     "Parametro_Expresion",
   };
 }
-/* JavaCC - OriginalChecksum=0d146ebdadbc7fe9e3ca6b71a0951a24 (do not edit this line) */
+/* JavaCC - OriginalChecksum=83d0510063a84a89fb4135f2ca6fbc11 (do not edit this line) */

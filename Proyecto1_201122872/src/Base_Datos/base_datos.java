@@ -5,6 +5,8 @@
  */
 package Base_Datos;
 
+import Analizador.SimpleNode;
+
 /**
  *
  * @author alina
@@ -24,9 +26,15 @@ public class base_datos extends objeto_base{
         this.nombre = "";
         
     }
+    
     public void iniciar_objetos(String nom){
         objetos_usql= new lista_elementos(nombre);
     }
+    
+    public boolean insertarTabla(String nombre, SimpleNode registro){
+        return objetos_usql.insertarTabla(nombre, registro);
+    }
+    
     
     
 }

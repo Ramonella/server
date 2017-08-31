@@ -10,6 +10,7 @@ import Clases_resolver_expresiones.Fecha;
 import Clases_resolver_expresiones.FechaTime;
 import Clases_resolver_expresiones.resolver_expresiones;
 import Errores.ErrorE;
+import Tabla_Simbolos.tabla_simbolos;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
@@ -25,11 +26,11 @@ public class Resolutor_Condicion  extends resolver_expresiones{
     
     
     
-     public int Resolver(SimpleNode nodo){
+     public int Resolver(SimpleNode nodo, tabla_simbolos vars){
          Resolutor_Expresiones expresiones = new Resolutor_Expresiones();
-         Object val1= expresiones.Resolver((SimpleNode)nodo.jjtGetChild(0));
+         Object val1= expresiones.Resolver((SimpleNode)nodo.jjtGetChild(0),vars);
          String simb= nodo.jjtGetChild(1).toString();
-         Object val2= expresiones.Resolver((SimpleNode)nodo.jjtGetChild(2));
+         Object val2= expresiones.Resolver((SimpleNode)nodo.jjtGetChild(2),vars);
          
         switch (simb) {
             case "<": {

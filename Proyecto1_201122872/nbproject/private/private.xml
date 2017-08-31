@@ -3,42 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Clases_resolver_expresiones/resolver_expresiones.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Retorno.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/proyecto1_201122872/Valores_Globales.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Si.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Ejecucion/Global.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tabla_Simbolos/objeto_instancia.java</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tabla_Simbolos/tabla_simbolos.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Mientras.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Para.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/GetFechaHora.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Detener.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Clases_resolver_expresiones/Valor.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tabla_Simbolos/variable.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Usuarios/Usuario.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Analizador/Gramatica.jjt</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Instancia.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Declaracion.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tabla_Simbolos/Simbolo.java</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Condiciones/Resolutor_Expresiones.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Clases_resolver_expresiones/Division.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Usuarios/Tabla_Usuarios.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Clases_resolver_expresiones/Suma.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Clases_resolver_expresiones/expresiones_aritmeticas.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/instruccion_generica.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Contar.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Asignacion.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Analizador/SimpleNode.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Comunicacion/Servidor.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Seleccionar.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/GetFecha.java</file>
-=======
-            <file>file:/home/empalacios/Escritorio/alina/server/Proyecto1_201122872/src/Tablas/Tupla.java</file>
-            <file>file:/home/empalacios/Escritorio/alina/server/Proyecto1_201122872/src/Tablas/lista_campos.java</file>
-            <file>file:/home/empalacios/Escritorio/alina/server/Proyecto1_201122872/src/Tablas/Tabla.java</file>
->>>>>>> 70e1340fb204b23f45e44a278c89575fece90305
         </group>
     </open-files>
 </project-private>

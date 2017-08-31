@@ -299,7 +299,7 @@ void COMPLE_U()#COMPE_U:{Token t;}{
 
 void LLAVE_FOR():{}{
 
-  <llave_for> term_id()
+  <llave_for> term_id() term_id()
 }
 
 
@@ -464,11 +464,41 @@ void INSERTAR():{}{
 
 }
 
-void OPCIONES_INSERTAR():{}{
+void OPCIONES_INSERTAR()#void:{}{
 
-      LOOKAHEAD(3) L_ID()<cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>((Donde())?)
-     |Parametro_Expresion()<cierra_par>
+     // LOOKAHEAD(3) L_ID()<cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>//((Donde())?)
+     //|Parametro_Expresion()<cierra_par>
+  LOOKAHEAD(2)forma1()
+  |LOOKAHEAD(2)forma2()
    
+}
+
+
+
+void l_term_id():{}{
+  term_id()(<coma>term_id())*
+}
+
+void op_campo():{}{
+
+   LOOKAHEAD(2)tabla_campo()
+   |LOOKAHEAD(2)term_id()
+
+}
+
+void forma1():{}{
+
+  Parametro_Expresion()<cierra_par>
+}
+
+void forma2():{}{
+   
+   l_term_id() <cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>
+}
+
+void tabla_campo():{}{
+
+  term_id() <punto>term_id()
 }
 
 void Donde():{}{
@@ -837,8 +867,11 @@ void ExpPot()#void:{}
 
 void Termino() #void :{}
 {
-    Id()
-	|<abre_par> Expresion() <cierra_par>
+    //Id()
+    LLAMADA()
+  | LOOKAHEAD(3)ATRI_OBJ()
+  | LOOKAHEAD(3)VAR()
+	| <abre_par> Expresion() <cierra_par>
 	| Decimal()
 	| Negativo()
 	| Cadena()
@@ -847,6 +880,20 @@ void Termino() #void :{}
 
 } 
 
+
+void LLAMADA():{}{
+
+  term_id()<abre_par>(Parametro_Expresion())?<cierra_par>
+
+}
+
+void ATRI_OBJ():{}{
+  "@"term_id()<punto>term_id()
+}
+
+void VAR():{}{
+  "@"term_id()
+}
 
 void Negativo ():{}
 {

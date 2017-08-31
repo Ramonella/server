@@ -5,6 +5,8 @@
  */
 package Base_Datos;
 
+import Analizador.SimpleNode;
+import Tablas.Tabla;
 import java.util.LinkedList;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 
@@ -23,6 +25,20 @@ public class lista_elementos {
         this.elementos = new LinkedList();
         nombre_base=nombre;
         
+    }
+    
+    public boolean insertarTabla(String nombre, SimpleNode nodo){
+       
+        for(int i=0; i< elementos.size(); i++){
+            objeto_base elem = elementos.get(i);
+            if(elem.nombre.equalsIgnoreCase(nombre)){
+                if(elem instanceof Tabla){
+                     Tabla temp= (Tabla) elem;
+                     return temp.agregarTupla(nodo);
+                }
+            }
+        }
+        return false;
     }
     
     public boolean existe(String nombre){

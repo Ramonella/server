@@ -88,7 +88,7 @@ public class SimpleNode implements Node {
 
     /* Override this method if you want to customize how the node dumps
      out its children. */
-    public void dump(String prefix) {
+    public void dump(String prefix) throws Exception {
         System.out.println(toString(prefix));
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
@@ -97,7 +97,7 @@ public class SimpleNode implements Node {
                 if (n != null) {
                     if (n.toString().equals("archivo")) {
                         
-                        //ejecutar((SimpleNode)n);
+                        ejecutar((SimpleNode)n);
                         //System.out.println("REsultado:\n " +crear_objetos_usql((SimpleNode)n.jjtGetChild(0)).getXML());
                         //System.out.println("no.. " + tabla.l_simbolos.size());
                         //tabla.imprimir();
@@ -148,10 +148,20 @@ public class SimpleNode implements Node {
         
         switch(nodo.toString()){
             
+            case "INSERTAR":{
+                
+               String nombre= nodo.jjtGetChild(0).toString();
+              boolean v = glob.base_actual.insertarTabla(nombre,(SimpleNode) nodo.jjtGetChild(1));
+               System.out.println("la insercion de valores fue "+ v);
+               break;
+               
+            }
+            
             case "CREAR":{
                 Global creador= new Global();
                 objeto_base nuevo = creador.crear_objetos_usql((SimpleNode)nodo.jjtGetChild(0));
                 glob.add_elemento_base_actual(nuevo);
+                break;
                 
                 
             }
@@ -160,6 +170,7 @@ public class SimpleNode implements Node {
               if(band){
                   glob.agregarConsola("El usuario, utilizara la base de datos "+ nodo.jjtGetChild(0).toString());
               }
+              break;
             }
             
         }
@@ -234,9 +245,10 @@ public class SimpleNode implements Node {
              }
              
              case "Nuva_Condicion":{
+                 tabla_simbolos n = new tabla_simbolos();
                  int numero_hijos = nodo_aux.jjtGetNumChildren();
                  if(numero_hijos==3){
-                     return condiciones.Resolver(nodo_aux); 
+                     return condiciones.Resolver(nodo_aux,n); 
                  }else{
                      return Evaluar_Condicion((SimpleNode)nodo_aux.jjtGetChild(0));
                      

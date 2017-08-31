@@ -17,9 +17,26 @@ public class tabla_simbolos {
     
     public LinkedList<Simbolo> l_simbolos;
     
+   
+    
+    
     public tabla_simbolos(){
         this.l_simbolos= new LinkedList();
     }
+    
+    
+    public Object getVal(String nombre){
+        Simbolo nuevo= getElemento(nombre);
+        if(nuevo!=null){
+            
+        }else{
+            
+        }
+        
+        
+        return null;
+    } 
+    
     
     public boolean insertar(Simbolo nuevo){
        
@@ -41,6 +58,15 @@ public class tabla_simbolos {
            }
         }
         return false;
+    }
+    
+    public Simbolo getElemento(String nombre){
+        for(Simbolo sim: l_simbolos){
+           if(sim.nombre.equalsIgnoreCase(nombre)){
+               return sim;
+           }
+        }
+        return null;
     }
     
     public void imprimir(){
