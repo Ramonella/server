@@ -1,3 +1,12 @@
-SELECCIONAR estudiante.id , asignacion.curso DE estudiante, asignacion DONDE estudiante.id == asignacion.id_estudiante;
 
 
+CREAR BASE_DATOS Ejemplo2;
+
+USAR Ejemplo2;
+
+CREAR TABLA Estudiante (
+INTEGER id Llave_Primaria Autoincrementable,
+TEXT Nombre No Nulo,
+DATE fh_nac No Nulo,
+BOOL trabaja,
+Direccion direccion);

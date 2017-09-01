@@ -36,7 +36,7 @@ public class Pruebas {
            System.out.println("--------- Analizador Finalizado --------------");
         } catch (Exception e) {
            System.out.println("Un error en la sintaxis.");
-           System.out.println(e.getMessage());
+           e.printStackTrace();
            
        }
     }

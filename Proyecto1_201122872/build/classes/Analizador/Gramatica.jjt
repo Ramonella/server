@@ -535,7 +535,7 @@ void Donde():{}{
 
 void ACTUALIZAR():{}{
 
-  <actualizar><tabla>term_id()<abre_par>L_ID()<cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>((Donde())?)<punto_coma>
+  <actualizar><tabla>term_id()<abre_par>l_term_id()<cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>((Donde())?)<punto_coma>
 }
 
 void BORRAR():{}{

@@ -99,7 +99,7 @@ public class Tabla extends objeto_base{
     public String getXML(){
         String ret="<tabla>\n"
                 + "<nombre> "+ this.nombre+" </tabla>\n"
-                + this.campos.getCadena()
+                + campos.getCadena()
                 +"</tabla>";
     
            return ret;          

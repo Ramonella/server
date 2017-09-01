@@ -6,6 +6,8 @@
 package Tablas;
 
 import Analizador.SimpleNode;
+import Clases_resolver_expresiones.Fecha;
+import Clases_resolver_expresiones.FechaTime;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 /**
@@ -16,48 +18,136 @@ public class Campo {
 
     public String tipo;
     public String nombre;
-    public boolean nulo;
-    public boolean no_nulo;
-    public boolean autoincrementable;
-    public boolean llave_primaria;
-    public llave_foranea foranea;
-    public boolean unico;
+    public Object[] complementos;
+    
+   
 
     public Campo() {
-        nulo=true;
-        no_nulo=false;
-        autoincrementable=false;
-        llave_primaria=false;
-        unico=false;
-        foranea= new llave_foranea();
+       
 
     }
 
     
+ private String comprobar_tipo(Object val) {
+        
+        if (val instanceof Double) {
+            return "decimal";
+        }
+        if (val instanceof Integer) {
+            return "entero";
+        }
+  
+        if (val instanceof String) {
+            if(val.toString().equalsIgnoreCase("nulo"))
+                return "nulo";
+            else
+                return "cadena"; 
+        }
+        
+        if(val instanceof Fecha){
+            return "fecha";
+        }
+        
+        if(val instanceof FechaTime){
+            return "fechatime";
+        }
+        
+        return "nulo";
+    }
     
     
-//    public boolean validar(Object valor){
-//        
-//    }
+    private boolean validar(String complemento , Object valor){
+        String tipo2 = comprobar_tipo(valor);
+        
+        if(this.tipo.equalsIgnoreCase(tipo2)){
+          switch(complemento.toUpperCase()){
+            case "NO NULO":{
+              return !valor.toString().equalsIgnoreCase("nulo");  
+            }
+            
+            case "NULO":{
+                
+              return valor.toString().equalsIgnoreCase("nulo");  
+            }
+            
+            
+            case "AUTOINCREMENTABLE":{
+                
+              return false;  
+            }
+            
+            case "LLAVE_PRIMARIA":{
+                
+              return false;  
+            }
+            
+            
+            case "UNICO":{
+                
+              return false;  
+            }
+            
+            case "LLAVE_FORANEA":{
+                
+              return false;  
+            }
+               
+        }  
+        }else{
+            glob.l_errores.agregar_error("El tipo de "+ valor +" es de "+tipo2+", no coincide con e tipo del campo que es "+ tipo+" no se podra realizar el registro");
+            return false;
+        }  
+        
+        return false;
+    }
+    
+    
+    
+    public boolean validar(Object valor){
+        
+        
+        
+        
+        return false;
+    }
+    
+    private String getComplementos() {
+        String cad = "";
+        if (complementos != null) {
+
+            for (int i = 0; i < complementos.length; i++) {
+                Object v = complementos[i];
+                if (v instanceof llave_foranea) {
+                    llave_foranea g = (llave_foranea) v;
+                    cad += "<llave_foranea>\n";
+                    cad += "<tabla> " + g.nombre_tabla + "</tabla>\n"
+                            + "<campo>" + g.nombre_campo + "</campo>\n"
+                            + "</llave_foranea>\n";
+                } else {
+                    cad += "<" + v.toString() + ">true</" + v.toString() + ">\n";
+                }
+
+            }
+            return cad;
+        } else {
+            return "";
+        }
+
+        
+        
+    }
     
      public String getCadena(){
         String ret="<campo>\n";
         ret+="<nombre> "+ nombre+" </nombre>\n";
-        ret+="<nulo> "+ nulo+" </nulo>\n";
-        ret+="<no_nulo> "+ no_nulo+" </no_nulo>\n";
-        ret+="<autoincrementable> "+ autoincrementable+" </autoincrementable>\n";
-        ret+="<llave_primaria> "+ llave_primaria+" </llave_primaria>\n";
-        ret+="<unico> "+ unico+" </unico>\n";
-        ret+="<foranea>\n";
-        ret+="<llave_foranea> "+ foranea.bandera+" </llave_foranea>\n";
-        ret+="<tabla_foranea> "+ foranea.nombre+" </tabla_foranea>\n";
-        ret+="</foranea>\n";
+        ret+="<tipo>"+ this.tipo+"</tipo>\n";
+        ret+=getComplementos();
         ret+="</campo>\n";
         return ret;
                
     }
     
-    
+    /*
     private void aplicar_complemento(SimpleNode nodo){
         String comp= nodo.toString();
         switch(comp.toUpperCase()){
@@ -104,17 +194,24 @@ public class Campo {
         }
         
         
-    }
+    }*/
   
    
-    
+     
     public void asignar_complemento(SimpleNode complementos) {
-        SimpleNode aux;
+        
+        this.complementos= new Object[complementos.jjtGetNumChildren()];
+        Object[] comple= new String[complementos.jjtGetNumChildren()];
         for (int i = 0; i < complementos.jjtGetNumChildren(); i++) {
-           aux= (SimpleNode)complementos.jjtGetChild(i);
-            aplicar_complemento(aux);
+           if(complementos.jjtGetChild(i).toString().equalsIgnoreCase("LLAVE_FOR")){
+               llave_foranea n = new llave_foranea((SimpleNode)complementos.jjtGetChild(i));
+               comple[i]= n;
+           }else{
+              comple[i]= complementos.jjtGetChild(i).toString(); 
+           }  
         }
 
+        this.complementos= comple;
     }
 
     public void asignar_campo(SimpleNode n_campo) {

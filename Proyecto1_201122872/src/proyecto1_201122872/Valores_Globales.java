@@ -78,9 +78,12 @@ public class Valores_Globales {
             }
             
         }else{
-          if(this.base_actual.objetos_usql.insertar_elemento(nuevo))  
-          agregarConsola("Se ha creado el elemento "+ nuevo.nombre+" con exito en la base de datos "+ base_actual.nombre);
-          else
+          if(this.base_actual.objetos_usql.insertar_elemento(nuevo))  {
+            agregarConsola("Se ha creado el elemento "+ nuevo.nombre+" con exito en la base de datos "+ base_actual.nombre);
+             
+            
+          }
+            else
              agregarConsola("No se ha podido crear el elemento "+ nuevo.nombre+" en la base de datos "+ base_actual.nombre+", ya hay otro elemento con el mismo nombre"); 
         }
         

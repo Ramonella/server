@@ -63,10 +63,11 @@ public class lista_campos {
     
     public String getCadena(){
         String ret="";
-         for(Campo n: l_campos){
-             ret+=n.getCadena();
-         }
-        
+        for (int i = 0; i < l_campos.size(); i++) {
+           Campo  n= l_campos.get(i);
+           ret+=n.getCadena();
+        }
+         
         return ret;
     }
     
