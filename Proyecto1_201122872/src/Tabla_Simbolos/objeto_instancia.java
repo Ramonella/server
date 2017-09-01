@@ -20,7 +20,10 @@ public class objeto_instancia extends Simbolo{
         atributos = new Tabla_Atributos();
     }
     
-    
+    public Object getAtributo(String nombre){
+        
+        return atributos.getAtributo(nombre);
+    }
     
     
     

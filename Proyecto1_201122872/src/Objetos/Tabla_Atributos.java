@@ -29,6 +29,17 @@ public class Tabla_Atributos {
         this.nombre_objeto="";
     }
     
+    
+    
+    public Object getAtributo(String nombre){
+        for (atributo_objeto atri: l_atributos) {
+            if(atri.getNombre().equalsIgnoreCase(nombre))
+                return atri;
+        }
+        return "nulo";
+        
+    }
+    
     public Tabla_Atributos clonar(){
         
         Tabla_Atributos atribitos = new Tabla_Atributos();

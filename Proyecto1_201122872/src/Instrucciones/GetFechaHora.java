@@ -5,10 +5,17 @@
  */
 package Instrucciones;
 
+import Tabla_Simbolos.tabla_simbolos;
+
 /**
  *
  * @author alina
  */
 public class GetFechaHora extends instruccion_generica{
+    
+    @Override
+    public void Ejecutar(tabla_simbolos vars){
+        
+    }
     
 }

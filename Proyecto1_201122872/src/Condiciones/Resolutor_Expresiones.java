@@ -14,6 +14,8 @@ import Clases_resolver_expresiones.Potencia;
 import Clases_resolver_expresiones.Resta;
 import Clases_resolver_expresiones.Suma;
 import Errores.ErrorE;
+import Objetos.atributo_objeto;
+import Tabla_Simbolos.objeto_instancia;
 import Tabla_Simbolos.tabla_simbolos;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 
@@ -25,55 +27,55 @@ public class Resolutor_Expresiones {
 
     public Resolutor_Expresiones() {
     }
-    
-    public Object[] resolver_lista_object(SimpleNode lista){
+
+    public Object[] resolver_lista_object(SimpleNode lista) {
         tabla_simbolos vars = new tabla_simbolos();
-        Object [] retorno = new String[lista.jjtGetNumChildren()];
+        Object[] retorno = new String[lista.jjtGetNumChildren()];
         for (int i = 0; i < lista.jjtGetNumChildren(); i++) {
-            Object res= Resolver((SimpleNode)lista.jjtGetChild(i),vars);
-            if(res instanceof Fecha){
-                Fecha res2 = (Fecha)res;
-                retorno[i]= res2; 
-            }else if(res instanceof FechaTime){
-                FechaTime res2 = (FechaTime)res;
-                retorno[i]= res2;
-                
-            }else{
-                retorno[i]= res;
+            Object res = Resolver((SimpleNode) lista.jjtGetChild(i), vars);
+            if (res instanceof Fecha) {
+                Fecha res2 = (Fecha) res;
+                retorno[i] = res2;
+            } else if (res instanceof FechaTime) {
+                FechaTime res2 = (FechaTime) res;
+                retorno[i] = res2;
+
+            } else {
+                retorno[i] = res;
             }
-            
+
         }
-        
+
         return retorno;
     }
-    
-    public String[] resolver_lista(SimpleNode lista){
+
+    public String[] resolver_lista(SimpleNode lista) {
         tabla_simbolos vars = new tabla_simbolos();
-        String [] retorno = new String[lista.jjtGetNumChildren()];
+        String[] retorno = new String[lista.jjtGetNumChildren()];
         for (int i = 0; i < lista.jjtGetNumChildren(); i++) {
-            Object res= Resolver((SimpleNode)lista.jjtGetChild(i),vars);
-            if(res instanceof Fecha){
-                Fecha res2 = (Fecha)res;
-                retorno[i]= res2.valorFecha; 
-            }else if(res instanceof FechaTime){
-                FechaTime res2 = (FechaTime)res;
-                retorno[i]= res2.valor_fecha;
-                
-            }else{
-                retorno[i]= res+"";
+            Object res = Resolver((SimpleNode) lista.jjtGetChild(i), vars);
+            if (res instanceof Fecha) {
+                Fecha res2 = (Fecha) res;
+                retorno[i] = res2.valorFecha;
+            } else if (res instanceof FechaTime) {
+                FechaTime res2 = (FechaTime) res;
+                retorno[i] = res2.valor_fecha;
+
+            } else {
+                retorno[i] = res + "";
             }
-            
+
         }
-        
+
         return retorno;
     }
-    
+
     public Object Resolver(SimpleNode nodo, tabla_simbolos vars) {
         //System.out.println("Hijos de Expresion "+nodo.children.length+ nodo.toString());
 
         switch (nodo.toString()) {
             case "Expresion": {
-                return Resolver((SimpleNode) nodo.jjtGetChild(0),vars);
+                return Resolver((SimpleNode) nodo.jjtGetChild(0), vars);
             }
 
             case "FECHA": {
@@ -97,10 +99,10 @@ public class Resolutor_Expresiones {
             }
             case "Suma": {
                 Suma elemento_suma = new Suma();
-                
+
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i), vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -119,7 +121,7 @@ public class Resolutor_Expresiones {
                 Resta elemento_suma = new Resta();
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i), vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -134,12 +136,12 @@ public class Resolutor_Expresiones {
                 return suma;
 
             }
-            
+
             case "Multiplicacion": {
                 Multiplicacion elemento_suma = new Multiplicacion();
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i), vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -154,12 +156,12 @@ public class Resolutor_Expresiones {
                 return suma;
 
             }
-            
+
             case "Division": {
                 Division elemento_suma = new Division();
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i), vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -174,12 +176,12 @@ public class Resolutor_Expresiones {
                 return suma;
 
             }
-            
+
             case "Potencia": {
                 Potencia elemento_suma = new Potencia();
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];
                 for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
-                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i),vars);
+                    aux_S[i] = Resolver((SimpleNode) nodo.jjtGetChild(i), vars);
                 }
                 Object suma = aux_S[0];
                 for (int i = 1; i < aux_S.length; i++) {
@@ -206,26 +208,46 @@ public class Resolutor_Expresiones {
             case "Decimal": {
                 return Double.parseDouble(nodo.jjtGetChild(0).toString());
             }
-            
-            case "VAR":{
-                String nombre =nodo.jjtGetChild(0).toString();
+
+            case "VAR": {
+                String nombre = nodo.jjtGetChild(0).toString();
                 Object resultado = vars.getVal_Variable(nombre);
                 return resultado;
                 //object val = vars.
-                
+
             }
-            
-            case "LLAMADA":{
-                
+
+            case "LLAMADA": {
+
             }
-            
-            case "ATRI_OBJ":{
-                
+
+            case "ATRI_OBJ": {
+                String nombre_objeto = nodo.jjtGetChild(0).toString();
+                String nombre_atributo = nodo.jjtGetChild(1).toString();
+                Object obj = vars.getVal_Objeto(nombre_objeto);
+                if (obj instanceof objeto_instancia) {
+                    objeto_instancia instancia = (objeto_instancia) obj;
+                    Object atri = instancia.getAtributo(nombre_atributo);
+                    if (atri instanceof atributo_objeto) {
+                        atributo_objeto g = (atributo_objeto) atri;
+                        return g.valor;
+
+                    } else {
+                        // atributo no existe
+                        glob.l_errores.agregar_error("El atributo " + nombre_atributo + ", que desea buscar en el objeto " + nombre_objeto + ", no existe");
+                    }
+
+                } else {
+                    //no existe el objeto
+                    glob.l_errores.agregar_error("No existe el objeto " + nombre_objeto + ", al que desea hacer referencia.");
+
+                }
+
             }
 
         }//fin del switch
 
-        return null;
+        return "nulo";
     }
-    
+
 }

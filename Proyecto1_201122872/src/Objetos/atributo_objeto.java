@@ -21,6 +21,7 @@ public class atributo_objeto {
        if(nuevo.jjtGetNumChildren()==2){
            this.tipo= nuevo.jjtGetChild(0).toString();
            this.nombre= nuevo.jjtGetChild(1).toString();
+           this.valor="nulo";
        }
     }
     

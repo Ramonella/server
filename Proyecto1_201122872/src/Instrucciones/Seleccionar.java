@@ -5,10 +5,19 @@
  */
 package Instrucciones;
 
+import Tabla_Simbolos.tabla_simbolos;
+
 /**
  *
  * @author alina
  */
 public class Seleccionar extends instruccion_generica{
+    
+    
+    
+    @Override
+    public void Ejecutar(tabla_simbolos vars){
+        
+    }
     
 }
