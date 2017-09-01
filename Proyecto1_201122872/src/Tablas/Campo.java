@@ -33,6 +33,13 @@ public class Campo {
 
     }
 
+    
+    
+    
+//    public boolean validar(Object valor){
+//        
+//    }
+    
      public String getCadena(){
         String ret="<campo>\n";
         ret+="<nombre> "+ nombre+" </nombre>\n";

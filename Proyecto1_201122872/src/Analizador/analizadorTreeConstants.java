@@ -41,16 +41,16 @@ public interface analizadorTreeConstants
   public int JJTOBJETO_USQL = 35;
   public int JJTINSERTAR = 36;
   public int JJTL_TERM_ID = 37;
-  public int JJTOP_CAMPO = 38;
+  public int JJTL_OPCAMPO = 38;
   public int JJTFORMA1 = 39;
   public int JJTFORMA2 = 40;
   public int JJTTABLA_CAMPO = 41;
-  public int JJTDONDE = 42;
-  public int JJTACTUALIZAR = 43;
-  public int JJTBORRAR = 44;
-  public int JJTSELECCIONAR = 45;
-  public int JJTTIPO_SELECCION = 46;
-  public int JJTDONDE_ORDEN = 47;
+  public int JJTSELECCIONAR = 42;
+  public int JJTTIPO_SELECCION = 43;
+  public int JJTP_ORDEN = 44;
+  public int JJTDONDE = 45;
+  public int JJTACTUALIZAR = 46;
+  public int JJTBORRAR = 47;
   public int JJTASTERISCO = 48;
   public int JJTORDEN = 49;
   public int JJTBASE_PERMISOS = 50;
@@ -144,16 +144,16 @@ public interface analizadorTreeConstants
     "OBJETO_USQL",
     "INSERTAR",
     "l_term_id",
-    "op_campo",
+    "l_opCampo",
     "forma1",
     "forma2",
     "tabla_campo",
+    "SELECCIONAR",
+    "Tipo_Seleccion",
+    "P_Orden",
     "Donde",
     "ACTUALIZAR",
     "BORRAR",
-    "SELECCIONAR",
-    "Tipo_Seleccion",
-    "Donde_Orden",
     "asterisco",
     "Orden",
     "Base_permisos",
@@ -208,4 +208,4 @@ public interface analizadorTreeConstants
     "Parametro_Expresion",
   };
 }
-/* JavaCC - OriginalChecksum=83d0510063a84a89fb4135f2ca6fbc11 (do not edit this line) */
+/* JavaCC - OriginalChecksum=49d7c449c2eacb2977d492388031a890 (do not edit this line) */

@@ -27,6 +27,22 @@ public class lista_elementos {
         
     }
     
+    
+     public Tabla getTabla(String nombre){
+       
+        for(int i=0; i< elementos.size(); i++){
+            objeto_base elem = elementos.get(i);
+            if(elem.nombre.equalsIgnoreCase(nombre)){
+                if(elem instanceof Tabla){
+                     Tabla temp= (Tabla) elem;
+                     return temp;
+                }
+            }
+        }
+        return null;
+    }
+    
+    
     public boolean insertarTabla(String nombre, SimpleNode nodo){
        
         for(int i=0; i< elementos.size(); i++){

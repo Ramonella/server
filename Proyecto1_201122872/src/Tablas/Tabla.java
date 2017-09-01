@@ -36,6 +36,12 @@ public class Tabla extends objeto_base{
     }
        
     
+    private boolean validar_campos(String [] valores){
+        
+        
+        return false;
+    } 
+    
     public boolean agregarTupla(SimpleNode nodo){
         
         switch(nodo.toString()){
@@ -45,9 +51,13 @@ public class Tabla extends objeto_base{
                 Resolutor_Expresiones exps = new Resolutor_Expresiones();
                 String [] nombres= campos.getCampos();
                 String [] valores = exps.resolver_lista((SimpleNode)nodo.jjtGetChild(0));
+                for (int i = 0; i < valores.length; i++) {
+                    System.out.println(nombres[i]+" -> "+valores[i]);
+                }
                 return agregarTupla(nombres,valores);  
             }
             case "forma2":{
+                
                 
             }
             
@@ -72,6 +82,19 @@ public class Tabla extends objeto_base{
 //        
 //    }
     
+    
+    
+    
+    
+    private String[] getValoresCampos(String []campos){
+        String [] ret= new String[tuplas.size()];
+        for (int i = 0; i < tuplas.size(); i++) {
+            Tupla t = tuplas.get(i);
+            ret[i]= t.obtenerValor(campos[i]).toString();
+        }
+        return ret;
+    }
+     
     @Override
     public String getXML(){
         String ret="<tabla>\n"

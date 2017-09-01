@@ -97,7 +97,7 @@ public class SimpleNode implements Node {
                 if (n != null) {
                     if (n.toString().equals("archivo")) {
                         
-                        ejecutar((SimpleNode)n);
+                        //ejecutar((SimpleNode)n);
                         //System.out.println("REsultado:\n " +crear_objetos_usql((SimpleNode)n.jjtGetChild(0)).getXML());
                         //System.out.println("no.. " + tabla.l_simbolos.size());
                         //tabla.imprimir();
@@ -147,11 +147,26 @@ public class SimpleNode implements Node {
         */
         
         switch(nodo.toString()){
+           
+            case "BORRAR":{
+                
+                break;
+            }
+            
+            case "ACTUALIZAR":{
+                
+                break;
+            }
             
             case "INSERTAR":{
                 
                String nombre= nodo.jjtGetChild(0).toString();
-              boolean v = glob.base_actual.insertarTabla(nombre,(SimpleNode) nodo.jjtGetChild(1));
+               boolean v = glob.base_actual.insertarTabla(nombre,(SimpleNode) nodo.jjtGetChild(1));
+               if(v){
+                   glob.agregarConsola("Se ha realizado con exito la insercion en la tabla "+ nombre);
+               }else{
+                   glob.agregarConsola("No se ha podido realizar la insercion en la tabla "+ nombre);
+               }
                System.out.println("la insercion de valores fue "+ v);
                break;
                

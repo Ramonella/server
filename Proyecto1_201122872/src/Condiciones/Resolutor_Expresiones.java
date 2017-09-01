@@ -26,6 +26,27 @@ public class Resolutor_Expresiones {
     public Resolutor_Expresiones() {
     }
     
+    public Object[] resolver_lista_object(SimpleNode lista){
+        tabla_simbolos vars = new tabla_simbolos();
+        Object [] retorno = new String[lista.jjtGetNumChildren()];
+        for (int i = 0; i < lista.jjtGetNumChildren(); i++) {
+            Object res= Resolver((SimpleNode)lista.jjtGetChild(i),vars);
+            if(res instanceof Fecha){
+                Fecha res2 = (Fecha)res;
+                retorno[i]= res2; 
+            }else if(res instanceof FechaTime){
+                FechaTime res2 = (FechaTime)res;
+                retorno[i]= res2;
+                
+            }else{
+                retorno[i]= res;
+            }
+            
+        }
+        
+        return retorno;
+    }
+    
     public String[] resolver_lista(SimpleNode lista){
         tabla_simbolos vars = new tabla_simbolos();
         String [] retorno = new String[lista.jjtGetNumChildren()];
@@ -188,6 +209,8 @@ public class Resolutor_Expresiones {
             
             case "VAR":{
                 String nombre =nodo.jjtGetChild(0).toString();
+                Object resultado = vars.getVal_Variable(nombre);
+                return resultado;
                 //object val = vars.
                 
             }

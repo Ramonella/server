@@ -479,11 +479,15 @@ void l_term_id():{}{
   term_id()(<coma>term_id())*
 }
 
-void op_campo():{}{
+void op_campo()#void:{}{
 
    LOOKAHEAD(2)tabla_campo()
    |LOOKAHEAD(2)term_id()
 
+}
+
+void l_opCampo():{}{
+  op_campo()(<coma>op_campo())*
 }
 
 void forma1():{}{
@@ -501,6 +505,29 @@ void tabla_campo():{}{
   term_id() <punto>term_id()
 }
 
+
+/*----- Select ------*/
+//SELECCIONAR * DE estudiante, asignacion DONDE estudiante.id == asignacion.id_estudiante;
+
+
+
+void SELECCIONAR():{}{
+
+<seleccionar> Tipo_Seleccion()<de>l_term_id()(Donde())? (P_Orden())?<punto_coma>
+
+}
+
+void Tipo_Seleccion():{}{
+
+  asterisco()
+  |l_opCampo()
+
+}
+
+void P_Orden():{}{
+<ordenar><por> op_campo() Orden()
+}
+
 void Donde():{}{
 
   <donde>Condicion()
@@ -516,24 +543,11 @@ void BORRAR():{}{
 
 }
 
-void SELECCIONAR():{}{
 
-<seleccionar> Tipo_Seleccion()<de>L_ID()((Donde_Orden())?)<punto_coma>
 
-}
 
-void Tipo_Seleccion():{}{
 
-  asterisco()
-  |L_ID()
 
-}
-
-void Donde_Orden():{}
-{
-   Donde() <ordenar><por> Id() Orden()
-
-}
 
 
 void asterisco():{Token t;}{
@@ -868,9 +882,10 @@ void ExpPot()#void:{}
 void Termino() #void :{}
 {
     //Id()
-    LLAMADA()
+    LOOKAHEAD(2)LLAMADA()
   | LOOKAHEAD(3)ATRI_OBJ()
   | LOOKAHEAD(3)VAR()
+  | LOOKAHEAD(2)op_campo()
 	| <abre_par> Expresion() <cierra_par>
 	| Decimal()
 	| Negativo()
@@ -900,6 +915,34 @@ void Negativo ():{}
 
    <S_MENOS>Expresion()  
 }
+
+
+
+
+
+
+/*------------------------ Condicion para las Tablas --------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*--------------------- Terminales de una expresion ----------------- */
 

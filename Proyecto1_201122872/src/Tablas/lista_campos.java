@@ -24,6 +24,11 @@ public class lista_campos {
     }
     
     
+//    public boolean validar_Tupla(String[]valores){
+//        
+//    }
+//    
+    
     public String[] getCampos(){
         String []  val = new String[l_campos.size()];
         for (int i = 0; i < l_campos.size(); i++) {

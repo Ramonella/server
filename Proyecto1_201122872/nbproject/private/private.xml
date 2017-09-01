@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tabla_Simbolos/tabla_simbolos.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tablas/Tabla.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tablas/lista_campos.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tablas/Campo.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/proyecto1_201122872/Pruebas.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Analizador/SimpleNode.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Condiciones/Resolutor_Expresiones_Tablas.java</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Condiciones/Resolutor_Expresiones.java</file>
         </group>
     </open-files>

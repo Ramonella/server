@@ -6,6 +6,7 @@
 package Base_Datos;
 
 import Analizador.SimpleNode;
+import Tablas.Tabla;
 
 /**
  *
@@ -16,6 +17,7 @@ public class base_datos extends objeto_base{
     
     public lista_elementos objetos_usql;
 
+    
     
     public base_datos(String nombre) {
         this.nombre = nombre;
@@ -35,6 +37,9 @@ public class base_datos extends objeto_base{
         return objetos_usql.insertarTabla(nombre, registro);
     }
     
-    
+    public Tabla getTabla(String nombre){
+        
+        return objetos_usql.getTabla(nombre);
+    }
     
 }

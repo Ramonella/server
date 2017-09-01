@@ -27,18 +27,18 @@ public class Pruebas {
         
     }
     
-    public void Analizar() throws Exception{
+    public void Analizar() {
          InputStream is = new ByteArrayInputStream(Leer_Archivo().getBytes());
         analizador analizar = new analizador(is);
-//        try {
+        try {
             SimpleNode n = analizar.Start();
             n.dump("");
            System.out.println("--------- Analizador Finalizado --------------");
-//        } catch (Exception e) {
-//           System.out.println("Un error en la sintaxis.");
-//           System.out.println(e.getMessage());
-//           
-//       }
+        } catch (Exception e) {
+           System.out.println("Un error en la sintaxis.");
+           System.out.println(e.getMessage());
+           
+       }
     }
     
     

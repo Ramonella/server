@@ -25,16 +25,20 @@ public class tabla_simbolos {
     }
     
     
-    public Object getVal(String nombre){
+    public Object getVal_Variable(String nombre){
         Simbolo nuevo= getElemento(nombre);
         if(nuevo!=null){
-            
+            if(nuevo instanceof variable){
+                variable temp= (variable)nuevo;
+                return ((variable) nuevo).valor;
+            }else{
+                glob.l_errores.agregar_error("No existe la variable "+ nombre+" a la cual quiere hacer referencia");
+                return "nulo";
+            }
         }else{
-            
+            glob.l_errores.agregar_error("No existe la variable "+ nombre+" a la cual quiere hacer referencia");
+           return "nulo";
         }
-        
-        
-        return null;
     } 
     
     
