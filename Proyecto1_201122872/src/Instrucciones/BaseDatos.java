@@ -5,21 +5,12 @@
  */
 package Instrucciones;
 
-import Tabla_Simbolos.tabla_simbolos;
-
 /**
  *
  * @author alina
  */
-public class instruccion_generica {
+public class BaseDatos extends instruccion_generica {
     
     
-    public resultado Ejecutar(tabla_simbolos vars){
-        
-        return new resultado();
-    }
     
-    public void Ejecutar(){
-        
-    }
 }
