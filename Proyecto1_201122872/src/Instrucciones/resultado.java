@@ -11,13 +11,18 @@ import Tabla_Simbolos.tabla_simbolos;
  *
  * @author alina
  */
-public class Seleccionar extends instruccion_generica{
+public class resultado {
     
+    public boolean continua=true;
+    public Object valor;
+    public tabla_simbolos tabla;
     
+    public resultado(){
+        tabla= new tabla_simbolos();
+    }
     
-     //@Override
-    public void Ejecutapr(tabla_simbolos vars){
-        
+    public void setTabla(tabla_simbolos t){
+        this.tabla= t;
     }
     
 }

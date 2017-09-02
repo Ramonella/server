@@ -34,17 +34,17 @@ public class resolver_expresiones {
      public  String comprobar_tipo(Object val) {
         
         if (val instanceof Double) {
-            return "decimal";
+            return "double";
         }
         if (val instanceof Integer) {
-            return "entero";
+            return "integer";
         }
   
         if (val instanceof String) {
             if(val.toString().equalsIgnoreCase("nulo"))
                 return "nulo";
             else
-                return "cadena"; 
+                return "text"; 
         }
         
         if(val instanceof Fecha){
@@ -99,7 +99,7 @@ public class resolver_expresiones {
     }
     
     public boolean esEntero(String tipo) {
-        return tipo.equalsIgnoreCase("entero");
+        return tipo.equalsIgnoreCase("integer");
     }
 
     public boolean esUno(int v){
@@ -115,11 +115,11 @@ public class resolver_expresiones {
     }
     
     public boolean esDecimal(String tipo) {
-        return tipo.equalsIgnoreCase("decimal");
+        return tipo.equalsIgnoreCase("double");
     }
     
     public boolean esCadena(String tipo) {
-        return tipo.equalsIgnoreCase("cadena");
+        return tipo.equalsIgnoreCase("text");
     }
     
     

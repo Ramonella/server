@@ -33,8 +33,8 @@ public class Actualizar extends instruccion_generica{
     }
     
     
-    @Override
-    public void Ejecutar(tabla_simbolos vars){
+    //@Override
+    public void Ejecutarggg(tabla_simbolos vars){
         Resolutor_Expresiones exps = new Resolutor_Expresiones();
         int no_hijos = nodo.jjtGetNumChildren();
         String nombreTabla= nodo.jjtGetChild(0).toString();

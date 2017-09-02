@@ -8,6 +8,7 @@ import Base_Datos.objeto_base;
 import Condiciones.Resolutor_Condicion;
 import Condiciones.Resolutor_Logica;
 import Ejecucion.Global;
+import Instrucciones.Cuerpo;
 import Instrucciones.Declaracion;
 import Objetos.Objeto;
 import Tabla_Simbolos.Simbolo;
@@ -95,9 +96,13 @@ public class SimpleNode implements Node {
                 SimpleNode n = (SimpleNode) children[i];
               
                 if (n != null) {
-                    if (n.toString().equals("archivo")) {
+                    if (n.toString().equals("CUERPO")) {
+                        Cuerpo p = new Cuerpo((SimpleNode) n);
+                        tabla_simbolos vars = new tabla_simbolos();
+                        p.Ejecutar(vars);
                         
-                        ejecutar((SimpleNode)n);
+                        
+                        //ejecutar((SimpleNode)n);
                         //System.out.println("REsultado:\n " +crear_objetos_usql((SimpleNode)n.jjtGetChild(0)).getXML());
                         //System.out.println("no.. " + tabla.l_simbolos.size());
                         //tabla.imprimir();
@@ -194,30 +199,7 @@ public class SimpleNode implements Node {
     }
     
     
-    
-    /*   Funciones Extras  */
- /* 
-   public void dump(String prefix) {
-        System.out.println(toString(prefix)+ "popooo");
-        if (children != null) {
-            for (int i = 0; i < children.length; ++i) {
-                System.out.println("numero de hijos "+ children.length);
-                SimpleNode n = (SimpleNode) children[i];
-                  System.out.println("nn   "
-                  + n.name);
-                if (n.toString().equals("Expresion")) {
-                    System.out.println("Entro a Expresion");
-                   // Declaracion((SimpleNode) n.children[0]);
-                    //Gramatica((SimpleNode) n.children[1]);
-                    //Codigo((SimpleNode) n.children[2]);
-                }
-//                if (n != null) {
-//                    n.dump(prefix + " ");
-//                }
-            }
-        }
-    }
-     */
+
      tabla_simbolos tabla= new tabla_simbolos();
     public void ejecutar_sentencia(SimpleNode nodo){
        
@@ -241,6 +223,8 @@ public class SimpleNode implements Node {
                 break;
             }
             case "INSTANCIA":{
+                
+                
                 break;
             }
             

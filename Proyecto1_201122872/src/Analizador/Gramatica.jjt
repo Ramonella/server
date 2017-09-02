@@ -180,7 +180,8 @@ SimpleNode Start():{}{
 }
 
 void Inicio():{}{
-archivo()
+CUERPO()
+//archivo()
  // Condicion()
  // INSTRUCCION()
 }
@@ -468,8 +469,8 @@ void OPCIONES_INSERTAR()#void:{}{
 
      // LOOKAHEAD(3) L_ID()<cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>//((Donde())?)
      //|Parametro_Expresion()<cierra_par>
-  LOOKAHEAD(2)forma1()
-  |LOOKAHEAD(2)forma2()
+  LOOKAHEAD(2)forma2()
+  |LOOKAHEAD(2)forma1()
    
 }
 
@@ -637,7 +638,14 @@ void DENEGAR():{}
 
 void ASIGNACION():{}{
 
-  "@"Id()complemento_asignacion()<punto_coma>
+  t_asig() complemento_asignacion()<punto_coma>
+}
+
+
+void t_asig()#void:{}{
+
+  LOOKAHEAD(3)ATRI_OBJ()
+  |LOOKAHEAD(3)VAR()
 }
 
 
@@ -645,9 +653,34 @@ void ASIGNACION():{}{
 
 void CUERPO():{}
 {
-  <abre_llave><cierra_llave>
+  <abre_llave>(sent_cuerpo())*<cierra_llave>
+
 }
 
+
+void sent_cuerpo()#void:{}{
+
+IF()
+|PARA()
+|MIENTRAS()
+|DETENER()
+|IMPRIMIR()
+|LLAMADA()
+|DECLARAR()
+|ASIGNACION()
+|INSERTAR()
+|BORRAR()
+|ACTUALIZAR()
+|SELECCIONAR()
+ //ddl
+|CREAR()
+|ELIMINAR()
+|ALTERAR()
+|USAR() 
+  //dml
+|OTORGAR()
+|DENEGAR()
+}
 //---------------- IF
 
 void SI():{}{

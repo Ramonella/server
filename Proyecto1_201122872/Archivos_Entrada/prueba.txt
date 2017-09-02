@@ -1,12 +1,26 @@
 
+#*
+CREAR PROCEDIMIENTO pedrito (INTEGER @id_e, INTEGER @id_c){
 
-CREAR BASE_DATOS Ejemplo2;
+DECLARAR @estudiante INTEGER= 7;
+DECLARAR @curso INTEGER= 5;
+SI (@curso > 0){
+SI(@estudiante > 0){
+INSERTAR EN TABLA asignacion(id_estudiante, id_curso) VALORES (@id_e, @id_c);
+}SINO{
+IMPRIMIR("El usuario ingresado no existe");
+}
+}SINO{
+IMPRIMIR("El curso ingresado no existe");
+}
+}*#
 
-USAR Ejemplo2;
 
-CREAR TABLA Estudiante (
-INTEGER id Llave_Primaria Autoincrementable,
-TEXT Nombre No Nulo,
-DATE fh_nac No Nulo,
-BOOL trabaja,
-Direccion direccion);
+{
+DECLARAR @cadena TEXT;
+DECLARAR @estudiante INTEGER =9;
+DECLARAR @curso INTEGER=11+@estudiante;	
+@estudiante= (@curso*2)+20;
+@cadena ="Mi Quiquin es lindo <3";
+	
+}

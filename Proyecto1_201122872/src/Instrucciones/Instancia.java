@@ -26,13 +26,15 @@ public class Instancia extends instruccion_generica {
     }
     
     @Override
-    public void Ejecutar(tabla_simbolos vars){
+    public resultado Ejecutar(tabla_simbolos vars){
+        resultado res = new resultado();
         Simbolo n = new Simbolo();
         Simbolo nuevo = n.getElemento(tipo);
         objeto_instancia nuevo_objeto = (objeto_instancia)nuevo;
         nuevo.nombre=nombre;
         nuevo.tipo=tipo;
         vars.insertar(nuevo_objeto);
+        return res;
     }
     
     

@@ -15,8 +15,8 @@ public class Si extends instruccion_generica{
     
     
     
-    @Override
-    public void Ejecutar(tabla_simbolos vars){
+     //@Override
+    public void Ejecutapr(tabla_simbolos vars){
         
     }
     

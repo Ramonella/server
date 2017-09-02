@@ -77,6 +77,10 @@ public class Resolutor_Expresiones {
             case "Expresion": {
                 return Resolver((SimpleNode) nodo.jjtGetChild(0), vars);
             }
+            
+            case "complemento_asignacion": {
+                return Resolver((SimpleNode) nodo.jjtGetChild(0), vars);
+            }
 
             case "FECHA": {
                 Object[] aux_S = new Object[nodo.jjtGetNumChildren()];

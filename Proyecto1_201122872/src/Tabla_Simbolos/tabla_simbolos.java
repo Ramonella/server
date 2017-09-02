@@ -6,6 +6,8 @@
 package Tabla_Simbolos;
 
 import Base_Datos.objeto_base;
+import Clases_resolver_expresiones.Suma;
+import Objetos.atributo_objeto;
 import java.util.LinkedList;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 
@@ -99,5 +101,66 @@ public class tabla_simbolos {
         }
     }
     
+    
+    
+    public boolean asignar(String nombre_var,Object valor ){
+        Suma s = new Suma();
+        String tipo_valor = s.comprobar_tipo(valor);
+        Simbolo temp;
+        for (int i = 0; i < this.l_simbolos.size(); i++) {
+            temp= l_simbolos.get(i);
+            if(temp.nombre.equalsIgnoreCase(nombre_var) && temp instanceof variable){
+                variable var = (variable)temp;
+                if(var.tipo.equalsIgnoreCase(tipo_valor)){
+                    var.valor= valor;
+                    l_simbolos.set(i, var);
+                    return true;
+                }else{
+                   glob.l_errores.agregar_error("Error, no se pudo asignar a la variable "+ nombre_var+", tipos no coinciden, "+ temp.tipo+ " "+tipo_valor);
+                   return false;
+                }
+            }
+            
+        }
+
+        glob.l_errores.agregar_error("No existe la variable "+ nombre_var); 
+        return false;
+    }
+    
+    public boolean asignar(String nombre_ob, String nombre_atri, Object valor){
+       Suma s = new Suma();
+        String tipo_valor = s.comprobar_tipo(valor);
+        Simbolo temp;
+        for (int i = 0; i < this.l_simbolos.size(); i++) {
+            temp= l_simbolos.get(i);
+            if(temp.nombre.equalsIgnoreCase(nombre_ob) && temp instanceof objeto_instancia){
+                objeto_instancia obj = (objeto_instancia) temp;
+                for (int j = 0; j < obj.atributos.l_atributos.size(); j++) {
+                    atributo_objeto atri= obj.atributos.l_atributos.get(j);
+                    if(atri.nombre.equalsIgnoreCase(nombre_atri)){
+                        if(atri.tipo.equalsIgnoreCase(tipo_valor)){
+                            atri.valor= valor;
+                            obj.atributos.l_atributos.set(j, atri);
+                            l_simbolos.set(i, obj);
+                            return true;
+                        }else{
+                            //existe pero no son el mismo tipo
+                            glob.l_errores.agregar_error("Error, no se puede asignar el atributo "+ nombre_atri+" del objeto "+ nombre_ob+", ya que los tipos no coinciden "+ obj.tipo+" "+ tipo_valor);
+                            return false;
+                        }
+                    }
+                    
+                    
+                }
+                
+               
+            }
+            
+        }
+
+        glob.l_errores.agregar_error("No existe el objeto "+ nombre_ob); 
+        return false;
+        
+    }
     
 }

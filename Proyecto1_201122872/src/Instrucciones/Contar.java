@@ -14,9 +14,8 @@ import Tabla_Simbolos.tabla_simbolos;
 public class Contar extends instruccion_generica{
     
     
-    @Override
-    public void Ejecutar(tabla_simbolos vars){
+    //@Override
+    public void Ejecutapr(tabla_simbolos vars){
         
     }
-    
 }
