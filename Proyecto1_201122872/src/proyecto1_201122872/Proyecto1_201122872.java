@@ -5,9 +5,7 @@
  */
 package proyecto1_201122872;
 
-import Base_Datos.base_datos;
-import Errores.Tabla_Errores;
-import Usuarios.Usuario;
+import java.io.IOException;
 
 
 /**
@@ -21,10 +19,10 @@ public class Proyecto1_201122872 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException  {
         // TODO code application logic here
         glob= new Valores_Globales();
-        
+        glob.Ejecutar_Maestro();
         
         Pruebas nueva = new Pruebas();
         nueva.Analizar();
@@ -32,6 +30,9 @@ public class Proyecto1_201122872 {
         //System.out.println("Numer de elementos en la base actual"+ glob.base_actual.objetos_usql.elementos.size());
         //System.out.println("Numer de bases de datos"+ glob.l_bases.lista_bases.size());
        
+       
+      
+        
     }
     
     

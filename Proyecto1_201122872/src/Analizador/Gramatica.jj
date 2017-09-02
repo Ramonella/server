@@ -221,7 +221,8 @@ void Inicio():{/*@bgen(jjtree) Inicio */
 /*@egen*/}{/*@bgen(jjtree) Inicio */
 try {
 /*@egen*/
-CUERPO()/*@bgen(jjtree)*/
+//CUERPO()
+archivo()/*@bgen(jjtree)*/
 } catch (Throwable jjte000) {
   if (jjtc000) {
     jjtree.clearNodeScope(jjtn000);
@@ -242,7 +243,6 @@ CUERPO()/*@bgen(jjtree)*/
   }
 }
 /*@egen*/
-//archivo()
  // Condicion()
  // INSTRUCCION()
 }

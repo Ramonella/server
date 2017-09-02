@@ -11,6 +11,10 @@ import Base_Datos.objeto_base;
 import Errores.Tabla_Errores;
 import Usuarios.Tabla_Usuarios;
 import Usuarios.Usuario;
+import XML.Arch_Maestro;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,12 +25,17 @@ import java.util.Date;
  */
 public class Valores_Globales {
     
+    private Arch_Maestro master;
+    
     public  Tabla_Errores l_errores;
     public  Usuario sesion;
     public  base_datos base_actual;
     public  String log_consola="";
     public  Bases_datos_tabla l_bases;
     public Tabla_Usuarios l_usuarios;
+    public String ruta_global="/home/alina/Documentos/USQL/";
+            
+   
     
     
     public Valores_Globales(){
@@ -36,6 +45,7 @@ public class Valores_Globales {
         log_consola="";
         this.l_bases= new Bases_datos_tabla();
         l_usuarios= new Tabla_Usuarios();
+        master = new Arch_Maestro();
     }
     
     
@@ -58,13 +68,11 @@ public class Valores_Globales {
         System.out.println(log_consola);
     }
     
-    public void add_elemento_base_actual(objeto_base nuevo){
+    public void add_elemento_base_actual(objeto_base nuevo) throws IOException{
         
         if(nuevo instanceof base_datos){
-            if(l_bases.nueva_base((base_datos)nuevo))
-            agregarConsola("Se ha creado con exito la nueva base de datos llamada "+ nuevo.nombre);
-            else
-              agregarConsola("No se ha podido crear la nueva base de datos "+ nuevo.nombre+", ya existe");  
+            
+            agregar_base_nueva((base_datos) nuevo);
             
         }else if(nuevo instanceof Usuario){
             if(l_usuarios.insertar((Usuario)nuevo))
@@ -88,4 +96,47 @@ public class Valores_Globales {
         }
         
     }
+    
+    
+    private boolean crearArchivos(String ruta) throws IOException{
+        File carpeta = new File(ruta);
+        File db = new File(ruta+"/DB.usac");
+        File tabla = new File(ruta+"/TABLA.usac");
+        File procedimientos = new File(ruta+"/PROCEDURE.usac");
+        File objetos = new File(ruta+"/OBJECT.usac");
+        
+        return (carpeta.mkdirs()&& db.createNewFile()&& tabla.createNewFile()&&
+                procedimientos.createNewFile() && objetos.createNewFile());
+        
+    } 
+    
+    
+    public void agregar_base_nueva(base_datos nueva) throws IOException{
+        if(l_bases.nueva_base(nueva)){
+           String nueva_ruta=  ruta_global+nueva.nombre;
+           if(crearArchivos(nueva_ruta)){
+               agregarConsola("La Base de datos "+ nueva.nombre+" ha sido creada con exito");
+           }else{
+               agregarConsola("La Base de datos "+ nueva.nombre+" no ha sido creada");
+           }
+              
+        }else{
+           agregarConsola("La Base de datos "+ nueva.nombre+" no ha sido creada"); 
+        }
+           
+    }
+    
+    
+    
+    
+    
+    /* ======================= Acciones con los XML ----------------------------- */
+    
+    public void Ejecutar_Maestro() throws IOException{
+        master.Cargar_Maestro();
+    }
+   
+    
+   
+    
 }

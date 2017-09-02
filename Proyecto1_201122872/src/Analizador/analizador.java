@@ -43,7 +43,7 @@ public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants, anal
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      CUERPO();
+      archivo();
     } catch (Throwable jjte000) {
   if (jjtc000) {
     jjtree.clearNodeScope(jjtn000);

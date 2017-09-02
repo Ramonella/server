@@ -180,8 +180,8 @@ SimpleNode Start():{}{
 }
 
 void Inicio():{}{
-CUERPO()
-//archivo()
+//CUERPO()
+archivo()
  // Condicion()
  // INSTRUCCION()
 }

@@ -14,6 +14,7 @@ import Objetos.Objeto;
 import Tabla_Simbolos.Simbolo;
 import Tabla_Simbolos.tabla_simbolos;
 import Tablas.Tabla;
+import java.io.IOException;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 
 
@@ -96,13 +97,13 @@ public class SimpleNode implements Node {
                 SimpleNode n = (SimpleNode) children[i];
               
                 if (n != null) {
-                    if (n.toString().equals("CUERPO")) {
-                        Cuerpo p = new Cuerpo((SimpleNode) n);
+                    if (n.toString().equals("archivo")) {
+                        /*Cuerpo p = new Cuerpo((SimpleNode) n);
                         tabla_simbolos vars = new tabla_simbolos();
-                        p.Ejecutar(vars);
+                        p.Ejecutar(vars);*/
                         
                         
-                        //ejecutar((SimpleNode)n);
+                        ejecutar((SimpleNode)n);
                         //System.out.println("REsultado:\n " +crear_objetos_usql((SimpleNode)n.jjtGetChild(0)).getXML());
                         //System.out.println("no.. " + tabla.l_simbolos.size());
                         //tabla.imprimir();
@@ -116,7 +117,7 @@ public class SimpleNode implements Node {
     }//*/
 
     
-    public void ejecutar(SimpleNode nodo){
+    public void ejecutar(SimpleNode nodo) throws IOException{
         for (int i = 0; i < nodo.jjtGetNumChildren(); i++) {
             Ejecutar_Instruccion_Global((SimpleNode)nodo.jjtGetChild(i));
             
@@ -124,7 +125,7 @@ public class SimpleNode implements Node {
     }
     
     
-    public void Ejecutar_Instruccion_Global(SimpleNode nodo){
+    public void Ejecutar_Instruccion_Global(SimpleNode nodo) throws IOException{
         
         
         

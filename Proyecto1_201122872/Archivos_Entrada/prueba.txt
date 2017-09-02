@@ -15,12 +15,17 @@ IMPRIMIR("El curso ingresado no existe");
 }
 }*#
 
-
+#*
 {
+
 DECLARAR @cadena TEXT;
 DECLARAR @estudiante INTEGER =9;
 DECLARAR @curso INTEGER=11+@estudiante;	
 @estudiante= (@curso*2)+20;
-@cadena ="Mi Quiquin es lindo <3";
+@cadena ="bgfgfg";
 	
-}
+}*#
+
+CREAR BASE_DATOS base2;
+CREAR BASE_DATOS Ejemplo1;
+CREAR BASE_DATOS Ejemplo2;
