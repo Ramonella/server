@@ -3,12 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/proyecto1_201122872/Proyecto1_201122872.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/Object/Analizador_Object.jjt</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/proyecto1_201122872/Valores_Globales.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/Cuerpo.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/Object/Analizador_Object.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/proyecto1_201122872/Pruebas.java</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Instrucciones/BaseDatos.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/Maestro/SimpleNode.java</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Analizador/SimpleNode.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Ejecucion/Global.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Base_Datos/objeto_base.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/Arch_Maestro.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Base_Datos/base_datos.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/Object/SimpleNode.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/Procedure/Analizador_Procedure.jjt</file>
         </group>
     </open-files>
 </project-private>

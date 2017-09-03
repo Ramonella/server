@@ -1,0 +1,152 @@
+options{
+	
+IGNORE_CASE = false;
+
+STATIC=false;
+}
+
+PARSER_BEGIN(Analizador_Procedure)
+
+package XML.Procedure;
+import java.io.*;
+
+public class Analizador_Procedure{
+
+}
+
+PARSER_END(Analizador_Procedure)
+SKIP:
+{
+ " "
+    |"\r"
+    |"\t"
+    |"\r\n"
+    |"\n"
+}
+
+
+TOKEN:{
+
+< proc:"proc">
+|< abre_etiqueta:"<">
+|< cierra_etiqueta:">">
+|< nombre:"nombre">
+|< func:"func">
+|< diagonal:"/">
+|<params:"params">
+|<tip:"tipo">
+|<src:"src">
+
+}
+
+TOKEN:{
+   < TEXT:"TEXT">
+  | < INTEGER:"INTEGER">
+  | < DOUBLE:"DOUBLE">
+  | < BOOL:"BOOL">
+  | < DATE:"DATE">
+  | <DATETIME:"DATETIME">
+
+}
+
+
+
+TOKEN :   //EXPRESONES REGULARES 
+{
+     <DECIMAL: (["0"-"9"])+("."(["0"-"9"])+)>
+  |  < NUM: ["0"-"9"] (["0"-"9"])* >
+  |  <CADENA: "\"" (  ~["\""] )* "\"">
+  |  <CARACTER: "\'" (["0"-"9"] | ["_","a"-"z","A"-"Z"] | "#" | "$" | "%" | "?" | "¿" | "@")  "\'">
+  |  < id: <LETRA> (<LETRA>|<DIGITO>)* >
+  |  < #LETRA: ["_","a"-"z","A"-"Z"] >
+  |  < #DIGITO: ["0"-"9"] >
+}
+
+
+SimpleNode Start():{}{
+
+	Inicio(){return jjtThis;}
+
+}
+
+
+void Inicio():{}{
+
+	sentencias()
+}
+
+
+
+void sentencias():{}{
+
+	(sent())*
+}
+
+
+void sent()#void:{}{
+
+ LOOKAHEAD(2)Procedimiento()
+ |LOOKAHEAD(2)funcion()
+
+}
+
+void TIPO()#Tipo:{Token t;}
+{
+   
+   t= <TEXT> { jjtThis.setName(t.image); }
+  |t=<INTEGER> { jjtThis.setName(t.image); }
+  |t=<DOUBLE> {  jjtThis.setName(t.image); }
+  |t=<BOOL> { jjtThis.setName(t.image); }
+  |t=<DATETIME> {  jjtThis.setName(t.image); }
+  |t=<DATE> { jjtThis.setName(t.image); }
+}
+
+
+void NombreV():{}{
+
+	<abre_etiqueta> <nombre> <cierra_etiqueta> term_id() <abre_etiqueta><diagonal><nombre><cierra_etiqueta>
+}
+
+ void Atributo():{}{
+
+   <abre_etiqueta> TIPO() <cierra_etiqueta> term_id() <abre_etiqueta> <diagonal> TIPO()<cierra_etiqueta>
+
+ }
+
+void parametros():{}{
+
+ <abre_etiqueta><params><cierra_etiqueta>(LOOKAHEAD(2)Atributo())*<abre_etiqueta><diagonal><cierra_etiqueta>
+
+}
+
+void codigo():{}{
+
+<abre_etiqueta> <src><cierra_etiqueta>(Ter_Cadena())?<abre_etiqueta><diagonal><src><cierra_etiqueta>
+
+}
+
+
+void Procedimiento():{}{
+ 
+<abre_etiqueta> <proc><cierra_etiqueta> 
+NombreV() parametros() codigo()<abre_etiqueta><diagonal><proc><cierra_etiqueta>
+
+}
+
+void funcion():{}{
+
+"<" <func> ">" NombreV() "<"<tip>">" TIPO() "<""/"<tip>">" parametros()codigo()"<""/"<func>">" 
+}
+
+void term_id()  :{Token t;}
+{
+  t = <id> { jjtThis.setName(t.image); }
+}
+
+
+void Ter_Cadena() #Cadena :{Token t;}
+{
+  t = <CADENA> { jjtThis.setName(t.image); }
+}
+
+
