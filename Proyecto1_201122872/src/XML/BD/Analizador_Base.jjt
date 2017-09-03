@@ -1,0 +1,202 @@
+
+options{
+	
+IGNORE_CASE = false;
+
+STATIC=false;
+}
+
+PARSER_BEGIN(Analizador_BD)
+
+package XML.BD;
+import java.io.*;
+
+public class Analizador_BD{
+
+}
+
+PARSER_END(Analizador_BD)
+SKIP:
+{
+ " "
+    |"\r"
+    |"\t"
+    |"\r\n"
+    |"\n"
+}
+
+
+TOKEN:{
+
+< proc:"procedure">
+|<object: "object">
+|<tabla:"Tabla">
+|< abre_etiqueta:"<">
+|< cierra_etiqueta:">">
+|< nombre:"nombre">
+|< func:"func">
+|< diagonal:"/">
+|<params:"params">
+|<tip:"tipo">
+|<rows:"rows">
+|<row:"row">
+|<path:"path">
+|<comple:"comple">
+
+}
+
+TOKEN:{
+   < TEXT:"TEXT">
+  | < INTEGER:"INTEGER">
+  | < DOUBLE:"DOUBLE">
+  | < BOOL:"BOOL">
+  | < DATE:"DATE">
+  | <DATETIME:"DATETIME">
+  | <S_MENOS:"-">
+  |<dos_puntos:":">
+  | < nulo:"Nulo">
+  | < no_nulo:"No Nulo">
+  | < autoincrementable:"Autoincrementable">
+  | < llave_prim:"Llave_Primaria">
+  | < llave_for:"Llave_Foranea">
+  | < unico:"Unico">
+
+}
+
+
+
+TOKEN :   //EXPRESONES REGULARES 
+{
+     <DECIMAL: (["0"-"9"])+("."(["0"-"9"])+)>
+  |  < NUM: ["0"-"9"] (["0"-"9"])* >
+  |  <CADENA: "\"" (  ~["\""] )* "\"">
+  |  <CARACTER: "\'" (["0"-"9"] | ["_","a"-"z","A"-"Z"] | "#" | "$" | "%" | "?" | "¿" | "@")  "\'">
+  |  < id: <LETRA> (<LETRA>|<DIGITO>)* >
+  |  < #LETRA: ["_","a"-"z","A"-"Z"] >
+  |  < #DIGITO: ["0"-"9"] >
+}
+
+
+SimpleNode Start():{}{
+
+	Inicio(){return jjtThis;}
+
+}
+
+
+void Inicio():{}{
+
+	sentencias()
+}
+
+
+
+void sentencias():{}
+{
+	Procedure()
+	Objetos()
+	tablas()
+}
+void tablas():{}{
+
+  (tabla())*
+
+}
+
+void ruta():{}
+{
+
+	<abre_etiqueta><path><cierra_etiqueta>Ter_Cadena()<abre_etiqueta><diagonal><path><cierra_etiqueta>
+}
+
+void Procedure():{}{
+
+	<abre_etiqueta><proc><cierra_etiqueta> ruta()<abre_etiqueta><diagonal><proc><cierra_etiqueta>
+
+}
+
+void Objetos():{}
+{
+	<abre_etiqueta><object><cierra_etiqueta> ruta()<abre_etiqueta><diagonal><object><cierra_etiqueta>
+}
+
+
+
+void COMPLE_U()#COMPE_U:{Token t;}{
+
+  t= <nulo>{ jjtThis.setName(t.image); }
+  |t= <no_nulo>{ jjtThis.setName(t.image); }
+  |t= <autoincrementable>{ jjtThis.setName(t.image); }
+  |t= <llave_prim>{ jjtThis.setName(t.image); }
+  |t= <unico>{ jjtThis.setName(t.image); }
+}
+
+
+void TIPO()#Tipo:{Token t;}
+{
+   
+   t= <TEXT> { jjtThis.setName(t.image); }
+  |t=<INTEGER> { jjtThis.setName(t.image); }
+  |t=<DOUBLE> {  jjtThis.setName(t.image); }
+  |t=<BOOL> { jjtThis.setName(t.image); }
+  |t=<DATETIME> {  jjtThis.setName(t.image); }
+  |t=<DATE> { jjtThis.setName(t.image); }
+  |t=<id> { jjtThis.setName(t.image); }
+
+}
+
+void tipo_campo():{}{
+
+	"<"<tip>">"TIPO()"<""/"<tip>">"
+}
+
+void nombre():{}{
+
+	"<"<nombre>">"term_id()"<""/"<nombre>">"
+}
+
+void row():{}{
+
+	"<"<row>">"
+	nombre()
+	tipo_campo()
+    (LOOKAHEAD(2)complemento())*
+	"<""/"<row>">"
+
+}
+
+
+void tabla():{}{
+  "<"<tabla>">"
+  nombre()
+  ruta()
+  columnas()
+  "<""/"<tabla>">" 
+
+}
+
+
+void columnas():{}{
+	"<"<rows>">"
+    (LOOKAHEAD(2)row())*
+	"<""/"<rows>">"
+
+}
+
+void complemento():{}{
+
+	"<"<comple>">"COMPLE_U()"<""/"<comple>">"
+}
+
+
+
+void term_id() #term_id :{Token t;}
+{
+  t = <id> { jjtThis.setName(t.image); }
+}
+
+
+void Ter_Cadena() #Cadena :{Token t;}
+{
+  t = <CADENA> { jjtThis.setName(t.image); }
+}
