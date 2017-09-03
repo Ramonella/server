@@ -7,7 +7,8 @@ package Base_Datos;
 
 import Analizador.SimpleNode;
 import Tablas.Tabla;
-
+import XML.xml_base;
+import java.io.IOException;
 /**
  *
  * @author alina
@@ -17,7 +18,11 @@ public class base_datos extends objeto_base{
     
     public lista_elementos objetos_usql;
     public String ruta="/home/alina/Documentos/USQL/";  
+    public xml_base archivos;
     
+    public void iniciar_xml()throws IOException {
+        archivos = new xml_base(this);
+    }
     
     public base_datos(String nombre) {
         this.nombre = nombre;

@@ -33,6 +33,7 @@ public class Objeto extends objeto_base {
     
     @Override
     public String getXML(){
-       return "<Obj>\n"+this.atributos.getCadena_atributos()+"</Obj>";
+       return "<Obj>\n"
+               + "<nombre>"+ this.nombre+"</nombre>\n"+this.atributos.getCadena_atributos()+"</Obj>\n";
     }
 }

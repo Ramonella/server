@@ -106,6 +106,14 @@ public class Tabla extends objeto_base{
     } 
     
     
+    public String getXML_tuplas(){
+        String cad="";
+        for(Tupla tp: tuplas){
+            cad+="<row>\n"+tp.getXML()+"\n</row>";
+        }
+        return cad;
+    }
+    
     
     
     

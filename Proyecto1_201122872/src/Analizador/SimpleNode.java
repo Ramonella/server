@@ -3,17 +3,16 @@
 package Analizador;
 
 
-import Base_Datos.base_datos;
+
 import Base_Datos.objeto_base;
 import Condiciones.Resolutor_Condicion;
 import Condiciones.Resolutor_Logica;
 import Ejecucion.Global;
-import Instrucciones.Cuerpo;
+
 import Instrucciones.Declaracion;
-import Objetos.Objeto;
-import Tabla_Simbolos.Simbolo;
+
 import Tabla_Simbolos.tabla_simbolos;
-import Tablas.Tabla;
+
 import java.io.IOException;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 

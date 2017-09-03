@@ -1,31 +1,25 @@
-
-#*
-CREAR PROCEDIMIENTO pedrito (INTEGER @id_e, INTEGER @id_c){
-
-DECLARAR @estudiante INTEGER= 7;
-DECLARAR @curso INTEGER= 5;
-SI (@curso > 0){
-SI(@estudiante > 0){
-INSERTAR EN TABLA asignacion(id_estudiante, id_curso) VALORES (@id_e, @id_c);
-}SINO{
-IMPRIMIR("El usuario ingresado no existe");
-}
-}SINO{
-IMPRIMIR("El curso ingresado no existe");
-}
-}*#
-
-#*
-{
-
-DECLARAR @cadena TEXT;
-DECLARAR @estudiante INTEGER =9;
-DECLARAR @curso INTEGER=11+@estudiante;	
-@estudiante= (@curso*2)+20;
-@cadena ="bgfgfg";
-	
-}*#
-
-CREAR BASE_DATOS base2;
+#*---------------- Ejemplo de como crear una base de datos -----------------*#
+CREAR BASE_DATOS base1;
 CREAR BASE_DATOS Ejemplo1;
 CREAR BASE_DATOS Ejemplo2;
+
+USAR Ejemplo2;
+
+#*---------------- Creacion de Objetos ------------------------------*#
+
+CREAR OBJETO OBJ1(TEXT atri1, INTEGER atri1);
+CREAR OBJETO OBJ2(TEXT atri2, INTEGER atri2);
+CREAR OBJETO OBJ3(TEXT atri3, INTEGER atri3);
+
+
+CREAR OBJETO Direccion(INTEGER avenida, INTEGER calle, TEXT
+nombre, TEXT descripcion);
+
+CREAR TABLA Producto(
+INTEGER id Llave_Primaria Autoincrementable,
+TEXT nombre No Nulo,
+DOUBLE precio No Nulo,
+INTEGER id_proveedor 
+);
+
+INSERTAR EN TABLA Producto (1,"Pedrito bonito",123.4,2);

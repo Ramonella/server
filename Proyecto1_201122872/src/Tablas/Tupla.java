@@ -22,4 +22,13 @@ public class Tupla {
     public Object obtenerValor(String campo) {
         return campos.get(campo);
     }
+    
+    public String getXML(){
+        String[] claves = campos.keySet().toArray(new String[0]);
+        String cadena="";
+        for (int i = 0; i < claves.length; i++) {
+            cadena +="<"+claves[i]+">"+ obtenerValor(claves[i])+"</"+claves[i]+">\n";
+        }
+        return cadena;
+    }
 }

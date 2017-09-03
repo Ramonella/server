@@ -53,6 +53,7 @@ public class Valores_Globales {
         
         if(l_bases.getBase(nombre)!=null){
             this.base_actual=l_bases.getBase(nombre);
+            
             return true;
         }
         return false;
@@ -101,11 +102,10 @@ public class Valores_Globales {
     private boolean crearArchivos(String ruta) throws IOException{
         File carpeta = new File(ruta);
         File db = new File(ruta+"/DB.usac");
-        File tabla = new File(ruta+"/TABLA.usac");
         File procedimientos = new File(ruta+"/PROCEDURE.usac");
         File objetos = new File(ruta+"/OBJECT.usac");
         
-        return (carpeta.mkdirs()&& db.createNewFile()&& tabla.createNewFile()&&
+        return (carpeta.mkdirs()&& db.createNewFile()&&
                 procedimientos.createNewFile() && objetos.createNewFile());
         
     } 

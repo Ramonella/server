@@ -5,6 +5,7 @@
  */
 package Base_Datos;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import static proyecto1_201122872.Proyecto1_201122872.glob;
 
@@ -19,6 +20,13 @@ public class Bases_datos_tabla {
     public Bases_datos_tabla(){
         this.lista_bases= new LinkedList();
         
+    }
+    
+    public void gen_Archivos() throws IOException{
+        for(base_datos base : lista_bases){
+            base.iniciar_xml();
+            base.archivos.subirArchivos();
+        }
     }
     
      public base_datos getBase(String nombre){
