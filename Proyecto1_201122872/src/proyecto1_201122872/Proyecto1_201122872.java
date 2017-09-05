@@ -27,7 +27,7 @@ public class Proyecto1_201122872 {
         Pruebas nueva = new Pruebas();
         nueva.Analizar();
         glob.l_errores.PrintErrores();
-        glob.l_bases.gen_Archivos();
+       // glob.l_bases.gen_Archivos();
         glob.base_actual.iniciar_xml();
         glob.base_actual.archivos.subirArchivos();
         //System.out.println("Numer de elementos en la base actual"+ glob.base_actual.objetos_usql.elementos.size());

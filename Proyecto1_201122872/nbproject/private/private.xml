@@ -5,15 +5,20 @@
         <group>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/xml_base.java</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tablas/Tabla.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Objetos/Objeto.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tablas/Campo.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/BD/Analizador_Base.jjt</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/Maestro/SimpleNode.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/xml_tabla.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tablas/lista_campos.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/proyecto1_201122872/Proyecto1_201122872.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/proyecto1_201122872/Valores_Globales.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/Arch_Maestro.java</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Base_Datos/base_datos.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Base_Datos/objeto_base.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Base_Datos/Bases_datos_tabla.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Objetos/atributo_objeto.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Condiciones/Resolutor_Expresiones.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Analizador/ParseException.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tablas/Campo.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Objetos/Objeto.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Analizador/SimpleNode.java</file>
+            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/xml_tabla.java</file>
             <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/Tablas/Tupla.java</file>
-            <file>file:/home/alina/Documentos/Repositorios/server/Proyecto1_201122872/src/XML/BD/SimpleNode.java</file>
         </group>
     </open-files>
 </project-private>

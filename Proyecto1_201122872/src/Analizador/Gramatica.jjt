@@ -10,8 +10,13 @@ PARSER_BEGIN(analizador)
 
 package Analizador;
 import java.io.*;
-
+import Funciones.str_codigo;
+import java.util.LinkedList;
 public class analizador{
+
+  public LinkedList<str_codigo> l_codigo= new LinkedList();
+  public String cod="";
+  public String nombre_f="";
 
 }
 
@@ -357,7 +362,9 @@ void PROCEDIMIENTO():{}
 
 void FUNCION():{}
 {
-  <funcion> term_id() <abre_par> (L_VAR_PARAMETRO())? <cierra_par> TIPO() CUERPO()
+  <funcion> {nombre_f= "";}term_id() <abre_par> (L_VAR_PARAMETRO())? <cierra_par> TIPO() CUERPO()
+  {str_codigo nuevo = new str_codigo(nombre_f,cod);
+    l_codigo.add(nuevo);}
 }
 
 void USUARIO():{}{
@@ -653,7 +660,10 @@ void t_asig()#void:{}{
 
 void CUERPO():{}
 {
+  
   <abre_llave>(sent_cuerpo())*<cierra_llave>
+   
+  
 
 }
 
@@ -1038,7 +1048,7 @@ void id_extra():{}
 
 void term_id() #term_id :{Token t;}
 {
-  t = <id> { jjtThis.setName(t.image); }
+  t = <id> { jjtThis.setName(t.image);  cod+=t.image; nombre_f= t.image;}
 }
 
 
@@ -1050,5 +1060,5 @@ void Extra_Id()#void:{}
 
 void Parametro_Expresion():{}
 {
-  Expresion() (<coma> Expresion())*
+  Expresion() (<coma> Expresion(){cod+=",";})*
 }

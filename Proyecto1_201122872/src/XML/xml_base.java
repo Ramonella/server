@@ -58,6 +58,42 @@ public class xml_base {
     }
     
     
+    
+    private void gen_archivos_Tuplas() throws IOException {
+        File arch_temporal;
+        lista_elementos l_temporal = this.baseDatos.objetos_usql;
+        for (objeto_base objTemp : l_temporal.elementos) {
+            String cadena = "";
+
+            if (objTemp instanceof Tabla) {
+                Tabla t_obj = (Tabla) objTemp;
+                cadena += t_obj.getXML_tuplas();
+                String encabezado = t_obj.getXML();
+               
+                String ruta = this.ruta_general + t_obj.nombre + ".usac";
+                arch_temporal = new File(ruta);
+                xml_tabla nuevo = new xml_tabla(t_obj.nombre, ruta, arch_temporal, encabezado);
+                
+                nuevo.crearArchivo();
+                nuevo.setEncabezaodo(encabezado);
+                this.archivos_tablas.add(nuevo);
+                if (arch_temporal.createNewFile() || arch_temporal.exists()) {
+                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(arch_temporal))) {
+                        bw.write("");
+                        bw.write(cadena);
+                        nuevo.setArchivo_tabla(arch_temporal);
+                    }
+
+                }
+
+            }
+        }
+
+        
+    }
+    
+    
+    
     private void gen_archivo_Base() throws IOException{
      String contenido ="<Procedure>\n"
              + "<path>"+ this.archivo_procedure.getPath()+"</path>\n"
@@ -88,35 +124,6 @@ public class xml_base {
     }
     
     
-    
-    private void gen_archivos_Tuplas() throws IOException{
-        File arch_temporal;
-        lista_elementos l_temporal= this.baseDatos.objetos_usql;
-        for(objeto_base objTemp : l_temporal.elementos){
-            String cadena="";
-            String encabezado="";
-              if(objTemp instanceof Tabla){
-                  Tabla t_obj = (Tabla)objTemp;
-                  cadena +=t_obj.getXML_tuplas();
-                  encabezado = t_obj.getXML();
-                  String ruta= this.ruta_general+t_obj.nombre+".usac";
-                  arch_temporal= new File(ruta);
-                  xml_tabla nuevo = new xml_tabla(t_obj.nombre, ruta, arch_temporal,encabezado);
-                  this.archivos_tablas.add(nuevo);
-                  if(arch_temporal.createNewFile()|| arch_temporal.exists()){
-                     try (BufferedWriter bw = new BufferedWriter(new FileWriter(arch_temporal))) {
-                        bw.write("");
-                         bw.write(cadena);
-                
-                        } 
-                  
-                  }
-                  
-              }
-          }
-        
-        
-    }
     
     
     private boolean gen_archivo_objetos() throws IOException{

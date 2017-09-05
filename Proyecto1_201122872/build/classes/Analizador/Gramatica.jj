@@ -11,11 +11,16 @@ PARSER_BEGIN(analizador)
 
 package Analizador;
 import java.io.*;
-
+import Funciones.str_codigo;
+import java.util.LinkedList;
 public class analizador/*@bgen(jjtree)*/implements analizadorTreeConstants/*@egen*/{/*@bgen(jjtree)*/
   protected JJTanalizadorState jjtree = new JJTanalizadorState();
 
 /*@egen*/
+
+  public LinkedList<str_codigo> l_codigo= new LinkedList();
+  public String cod="";
+  public String nombre_f="";
 
 }
 
@@ -924,7 +929,14 @@ void FUNCION():{/*@bgen(jjtree) FUNCION */
 {/*@bgen(jjtree) FUNCION */
   try {
 /*@egen*/
-  <funcion> term_id() <abre_par> (L_VAR_PARAMETRO())? <cierra_par> TIPO() CUERPO()/*@bgen(jjtree)*/
+  <funcion> {nombre_f= "";}term_id() <abre_par> (L_VAR_PARAMETRO())? <cierra_par> TIPO() CUERPO()/*@bgen(jjtree)*/
+  {
+    jjtree.closeNodeScope(jjtn000, true);
+    jjtc000 = false;
+  }
+/*@egen*/
+  {str_codigo nuevo = new str_codigo(nombre_f,cod);
+    l_codigo.add(nuevo);}/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -2201,6 +2213,7 @@ void CUERPO():{/*@bgen(jjtree) CUERPO */
 {/*@bgen(jjtree) CUERPO */
   try {
 /*@egen*/
+  
   <abre_llave>(sent_cuerpo())*<cierra_llave>/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
@@ -2222,6 +2235,8 @@ void CUERPO():{/*@bgen(jjtree) CUERPO */
     }
   }
 /*@egen*/
+   
+  
 
 }
 
@@ -3660,7 +3675,7 @@ void term_id()          :{/*@bgen(jjtree) term_id */
              jjtree.closeNodeScope(jjtn000, true);
              jjtc000 = false;
            }
-/*@egen*/ { jjtn000.setName(t.image); }/*@bgen(jjtree)*/
+/*@egen*/ { jjtn000.setName(t.image);  cod+=t.image; nombre_f= t.image;}/*@bgen(jjtree)*/
   } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);
@@ -3684,7 +3699,7 @@ void Parametro_Expresion():{/*@bgen(jjtree) Parametro_Expresion */
 {/*@bgen(jjtree) Parametro_Expresion */
   try {
 /*@egen*/
-  Expresion() (<coma> Expresion())*/*@bgen(jjtree)*/
+  Expresion() (<coma> Expresion(){cod+=",";})*/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
