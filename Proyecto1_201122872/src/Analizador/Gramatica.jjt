@@ -236,20 +236,20 @@ void archivo():{}{
 void TIPO()#Tipo:{Token t;}
 {
    
-   t= <TEXT> { jjtThis.setName(t.image); }
-  |t=<INTEGER> { jjtThis.setName(t.image); }
-  |t=<DOUBLE> {  jjtThis.setName(t.image); }
-  |t=<BOOL> { jjtThis.setName(t.image); }
-  |t=<DATETIME> {  jjtThis.setName(t.image); }
-  |t=<DATE> { jjtThis.setName(t.image); }
-  |t=<id> { jjtThis.setName(t.image); }
+   t= <TEXT> { jjtThis.setName(t.image); cod+=t.image; }
+  |t=<INTEGER> { jjtThis.setName(t.image); cod+=t.image;}
+  |t=<DOUBLE> {  jjtThis.setName(t.image);cod+=t.image; }
+  |t=<BOOL> { jjtThis.setName(t.image); cod+=t.image;}
+  |t=<DATETIME> {  jjtThis.setName(t.image); cod+=t.image;}
+  |t=<DATE> { jjtThis.setName(t.image); cod+=t.image;}
+  |t=<id> { jjtThis.setName(t.image); cod+=t.image;}
 
 }
 
 
 void L_ATRIBUTOS():{}{
  
- (ATRIBUTO()(<coma> ATRIBUTO())*)
+ (ATRIBUTO()(<coma>{cod+=",";} ATRIBUTO())*)
 }
 
 void ATRIBUTO():{}{
@@ -259,18 +259,18 @@ void ATRIBUTO():{}{
 
 void VAR_PARAMETRO():{}{
 
-  TIPO() "@" term_id()
+  TIPO() "@" {cod+="@";}term_id()
 }
 
 void L_VAR_PARAMETRO():{}{
  
- (VAR_PARAMETRO()(<coma> VAR_PARAMETRO())*)
+ (VAR_PARAMETRO()(<coma>{cod+=",";} VAR_PARAMETRO())*)
 }
 
 
 void L_ELEMENTOS():{}{
 
-   ELEMENTO() (<coma> ELEMENTO())*
+   ELEMENTO() (<coma>{cod+=",";} ELEMENTO())*
 
 }
 
@@ -305,7 +305,7 @@ void COMPLE_U()#COMPE_U:{Token t;}{
 
 void LLAVE_FOR():{}{
 
-  <llave_for> term_id() term_id()
+  <llave_for> {cod+="Llave_Foranea";}term_id() term_id()
 }
 
 
@@ -321,7 +321,7 @@ void L_CREAR():{}
 void CREAR():{}
 {
 
-  <crear> P_CREAR()
+  <crear>{cod+="CREAR";} P_CREAR()
 
 }
 
@@ -337,60 +337,63 @@ void P_CREAR()#void:{}{
 void BASE():{}
 {
 
-  <base_datos> term_id() <punto_coma>
+
+  <base_datos>{cod+="BASE_DATOS";} term_id() <punto_coma>{cod+=";";}
 }
 
 void TABLA():{}
 {
-  <tabla> term_id() <abre_par> (L_ELEMENTOS())? <cierra_par><punto_coma>
+  <tabla>{cod+="TABLA";} term_id() <abre_par>{cod+="(";} (L_ELEMENTOS())? <cierra_par>{cod+=");";}<punto_coma>
 }
 
 
 void OBJETO():{}
 {
 
-  <objeto>term_id()<abre_par> (L_ATRIBUTOS())? <cierra_par><punto_coma>
+  <objeto>{cod+="OBJETO";}term_id()<abre_par>{cod+="(";} (L_ATRIBUTOS())? <cierra_par><punto_coma>{cod+=");";}
 }
 
 
 
 void PROCEDIMIENTO():{}
 {
-  <procedimiento> term_id() <abre_par> (L_VAR_PARAMETRO())? <cierra_par> CUERPO()
+  <procedimiento>{cod+="PROCEDIMIENTO";nombre_f= "";} term_id() <abre_par>{cod+="(";} (L_VAR_PARAMETRO())? <cierra_par> {cod+=")";}CUERPO()
+  {str_codigo nuevo = new str_codigo(nombre_f,cod);
+    l_codigo.add(nuevo);}
 }
 
 
 void FUNCION():{}
 {
-  <funcion> {nombre_f= "";}term_id() <abre_par> (L_VAR_PARAMETRO())? <cierra_par> TIPO() CUERPO()
+  <funcion> {cod+="FUNCION"; nombre_f= "";}term_id() <abre_par> {cod+="(";} (L_VAR_PARAMETRO())? <cierra_par> {cod+=")";} TIPO() CUERPO()
   {str_codigo nuevo = new str_codigo(nombre_f,cod);
     l_codigo.add(nuevo);}
 }
 
 void USUARIO():{}{
 
-<usuario> term_id() <colocar><password>"=" Cadena()<punto_coma>
-
+<usuario>{cod+="USUARIO";}  term_id() <colocar>{cod+="COLOCAR";} <password>{cod+="password";} "="{cod+="=";}  Cadena()<punto_coma>
+{cod+=";";} 
 }
 
 
 
 void USAR():{}{
-
+{cod+="USAR";} 
 <usar> term_id()<punto_coma>
-
+{cod+=";";} 
 }
 
 
 void L_ID():{}{
 
-Id()(<coma>Id())*
+Id()(<coma>{cod+=",";} Id())*
 
 }
 
 
 void ALTERAR_TABLA():{}{
-  <tabla> term_id() OPCIONES_TABLA()
+  <tabla>{cod+="TABLA";}  term_id() OPCIONES_TABLA()
 }
 
 void OPCIONES_TABLA()#void:{}{
@@ -401,17 +404,17 @@ void OPCIONES_TABLA()#void:{}{
 
 void ALTERAR_AGREGAR_TABLA():{}{
 
-  <agregar><abre_par>L_ELEMENTOS()<cierra_par>
+  <agregar>{cod+="AGREGAR";} <abre_par>{cod+="(";} L_ELEMENTOS()<cierra_par>{cod+=")";} 
 }
 
 void ALTERAR_QUITAR_TABLA():{}{
 
-  <quitar> L_ID()
+  <quitar> {cod+="QUITAR";} l_term_id()
 }
 
 void ALTERAR_OBJETO():{}
 {
-  <objeto>term_id()OPCIONES_OBJETO()
+  <objeto>{cod+="OBJETO";} term_id()OPCIONES_OBJETO()
 }
 
 void OPCIONES_OBJETO()#void:{}{
@@ -421,23 +424,23 @@ void OPCIONES_OBJETO()#void:{}{
 }
 
 void ALTERAR_AGREGAR_OBJETO():{}{
- <agregar> <abre_par> L_ATRIBUTOS()<cierra_par>
+ <agregar> {cod+="AGREGAR";} <abre_par>{cod+="(";}  L_ATRIBUTOS()<cierra_par>{cod+=")";} 
 }
 
 
 void ALTERAR_QUITAR_OBJETO():{}{
 
-  <quitar>L_ID()
+  <quitar> {cod+="QUITAR";} l_term_id()
 }
 
 void ALTERAR_USUARIO():{}{
-  <usuario>term_id()<cambiar><password>"="Cadena()
+  <usuario>{cod+="USUARIO";} term_id()<cambiar>{cod+="CAMBIAR";} <password>{cod+="password=";} "="Cadena()
 }
 
 
 void ALTERAR():{}{
 
-  <alterar>OPCIONES_ALTERAR()<punto_coma>
+  <alterar>{cod+="ALTERAR";} OPCIONES_ALTERAR()<punto_coma>{cod+=";";} 
 
 }
 
@@ -450,16 +453,16 @@ void OPCIONES_ALTERAR():{}{
 
 void ELIMINAR():{}{
   
- <eliminar> OBJETO_USQL() term_id()<punto_coma>
+ <eliminar> {cod+="ELIMINAR";} OBJETO_USQL() term_id()<punto_coma>{cod+=";";} 
 }
 
 
 void OBJETO_USQL()#OBJETO_USQL:{Token t;}{
 
-  t= <base_datos>{ jjtThis.setName(t.image); }
-  |t= <tabla>{ jjtThis.setName(t.image); }
-  |t= <objeto>{ jjtThis.setName(t.image); }
-  |t= <usuario>{ jjtThis.setName(t.image); }
+  t= <base_datos>{ jjtThis.setName(t.image); cod+=t.image;}
+  |t= <tabla>{ jjtThis.setName(t.image); cod+=t.image;}
+  |t= <objeto>{ jjtThis.setName(t.image); cod+=t.image;}
+  |t= <usuario>{ jjtThis.setName(t.image); cod+=t.image;}
 }
 
 
@@ -468,7 +471,7 @@ void OBJETO_USQL()#OBJETO_USQL:{Token t;}{
 
 void INSERTAR():{}{
 
-<insertar><en><tabla>term_id()<abre_par> OPCIONES_INSERTAR() <punto_coma>
+<insertar>{cod+="INSERTAR";}<en>{cod+="EN";}<tabla>{cod+="TABLA";}term_id()<abre_par> {cod+="(";}OPCIONES_INSERTAR() <punto_coma>{cod+=";";}
 
 }
 
@@ -484,7 +487,7 @@ void OPCIONES_INSERTAR()#void:{}{
 
 
 void l_term_id():{}{
-  term_id()(<coma>term_id())*
+  term_id()(<coma>{cod+=",";}term_id())*
 }
 
 void op_campo()#void:{}{
@@ -495,22 +498,22 @@ void op_campo()#void:{}{
 }
 
 void l_opCampo():{}{
-  op_campo()(<coma>op_campo())*
+  op_campo()(<coma>{cod+=",";}op_campo())*
 }
 
 void forma1():{}{
 
-  Parametro_Expresion()<cierra_par>
+  Parametro_Expresion()<cierra_par>{cod+=")";}
 }
 
 void forma2():{}{
    
-   l_term_id() <cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>
+   l_term_id() <cierra_par>{cod+=")";}<valores>{cod+="VALORES";}<abre_par>{cod+="(";}Parametro_Expresion()<cierra_par>{cod+=")";}
 }
 
 void tabla_campo():{}{
 
-  term_id() <punto>term_id()
+  term_id() <punto>{cod+=".";}term_id()
 }
 
 
@@ -521,8 +524,8 @@ void tabla_campo():{}{
 
 void SELECCIONAR():{}{
 
-<seleccionar> Tipo_Seleccion()<de>l_term_id()(Donde())? (P_Orden())?<punto_coma>
-
+<seleccionar>{cod+="SELECCIONAR";} Tipo_Seleccion()<de>{cod+="DE";}l_term_id()(Donde())? (P_Orden())?<punto_coma>
+{cod+=";";}
 }
 
 void Tipo_Seleccion():{}{
@@ -533,21 +536,21 @@ void Tipo_Seleccion():{}{
 }
 
 void P_Orden():{}{
-<ordenar><por> op_campo() Orden()
+<ordenar>{cod+="ORDENAR";}<por>{cod+="POR";} op_campo() Orden()
 }
 
 void Donde():{}{
 
-  <donde>Condicion()
+  <donde>{cod+="DONDE ";}Condicion()
 }
 
 void ACTUALIZAR():{}{
 
-  <actualizar><tabla>term_id()<abre_par>l_term_id()<cierra_par><valores><abre_par>Parametro_Expresion()<cierra_par>((Donde())?)<punto_coma>
+  <actualizar>{cod+="ACTUALIZAR";}<tabla>{cod+="TABLA";}term_id()<abre_par>{cod+="(";}l_term_id()<cierra_par>{cod+=")";}<valores>{cod+="VALORES";}<abre_par>{cod+="(";}Parametro_Expresion()<cierra_par>{cod+=")";}((Donde())?)<punto_coma>{cod+=";";}
 }
 
 void BORRAR():{}{
-<borrar><en><tabla>term_id()((Donde())?)<punto_coma>
+<borrar>{cod+="BORRAR";}<en>{cod+="EN";}<tabla>{cod+="TABLA";}term_id()((Donde())?)<punto_coma>{cod+=";";}
 
 }
 
@@ -560,13 +563,13 @@ void BORRAR():{}{
 
 void asterisco():{Token t;}{
 
-  t= "*"{ jjtThis.setName(t.image); }
+  t= "*"{ jjtThis.setName(t.image); cod+="*";}
 }
 
 void Orden():{Token t;}{
 
-   t= <asc> { jjtThis.setName(t.image); }
-   |t= <desc> { jjtThis.setName(t.image); }
+   t= <asc> { jjtThis.setName(t.image); cod+=t.image;}
+   |t= <desc> { jjtThis.setName(t.image); cod+=t.image;}
 }
 
 
@@ -583,18 +586,18 @@ void Objeto_permiso()#void:{}
 
 void Base_permisos():{}{
 
-  <permisos> term_id() <coma> term_id() <punto> Objeto_permiso()<punto_coma>
+  <permisos>{cod+="PERMISOS";} term_id() <coma>{cod+=",";} term_id() <punto>{cod+=".";} Objeto_permiso()<punto_coma>{cod+=";";}
 }
 
 void OTORGAR():{}{
 
-<otorgar> Base_permisos()
+<otorgar>{cod+="OTORGAR";} Base_permisos()
 
 }
 
 void DENEGAR():{}
 {
-  <denegar>Base_permisos()
+  <denegar>{cod+="DENEGAR";}Base_permisos()
 }
 
 
@@ -606,13 +609,13 @@ void DENEGAR():{}
 /*----- Declaraciones --------*/
 
   void l_variables():{}{
-
-    "@"term_id()(<coma>"@"term_id())*
+    {cod+="@";}
+    "@"term_id()(<coma>"@"{cod+=",@";}term_id())*
   }
 
 
   void INSTANCIA():{}{
-
+     {cod+="@";}
     "@"term_id() term_id()
 
   }
@@ -626,8 +629,9 @@ void DENEGAR():{}
 
 
   void DECLARAR():{}{
-     
+     {cod+="DECLARAR";}
     <declarar> tipo_declaracion()<punto_coma>
+    {cod+=";";}
 
   }
 
@@ -637,7 +641,7 @@ void DENEGAR():{}
   }
 
   void complemento_asignacion():{}{
-
+     {cod+="=";}
     "=" Expresion()
   }
 
@@ -660,9 +664,9 @@ void t_asig()#void:{}{
 
 void CUERPO():{}
 {
-  
+  {cod+="{";}
   <abre_llave>(sent_cuerpo())*<cierra_llave>
-   
+   {cod+="}";}
   
 
 }
@@ -694,11 +698,12 @@ IF()
 //---------------- IF
 
 void SI():{}{
-
-  <si><abre_par>Condicion()<cierra_par> CUERPO()
+  {cod+=" SI(";}
+  <si><abre_par>Condicion()<cierra_par>{cod+=")";} CUERPO()
 }
 
 void SINO():{}{
+  {cod+=" SINO ";}
   <sino>CUERPO()
 }
 
@@ -713,13 +718,13 @@ void IF():{}
 
 void unario():{Token t;}{
 
-  t= <mas_mas>{ jjtThis.setName(t.image); }
-  |t= <menos_menos>{ jjtThis.setName(t.image); }
+  t= <mas_mas>{ jjtThis.setName(t.image); cod+="++"; }
+  |t= <menos_menos>{ jjtThis.setName(t.image); cod+="--"; }
 }
 
 void PARA ():{}{
-
-<para><abre_par><declarar> VARIABLE() <punto_coma>Condicion()<punto_coma> unario()<cierra_par>CUERPO()
+{cod+=" PARA ( DECLARAR ";}
+<para><abre_par><declarar> VARIABLE() {cod+=";";}<punto_coma>Condicion()<punto_coma> {cod+=";";}unario()<cierra_par>{cod+=")";}CUERPO()
 
 }
 
@@ -727,7 +732,8 @@ void PARA ():{}{
 
 void MIENTRAS():{}
 {
-  <mientras> <abre_par> Condicion() <cierra_par>CUERPO()
+  {cod+=" MIENTRAS(";}
+  <mientras> <abre_par> Condicion() <cierra_par>{cod+=")";}CUERPO()
 }
 
 
@@ -735,7 +741,7 @@ void MIENTRAS():{}
 
 void DETENER():{}
 {
-
+{cod+=" DETENER;";}
   <detener><punto_coma>
 }
 
@@ -745,7 +751,9 @@ void DETENER():{}
 void IMPRIMIR():{}
 {
 
+{cod+=" IMPRIMIR(";}
   <imprimir> <abre_par>Expresion()<cierra_par><punto_coma>
+  {cod+=");";}
 }
 
 
@@ -753,6 +761,7 @@ void IMPRIMIR():{}
 
 void FECHA():{}
 {
+  {cod+=" FECHA();";}
   <fecha><abre_par><cierra_par><punto_coma>
 }
 
@@ -761,6 +770,7 @@ void FECHA():{}
 
 void FECHA_HORA():{}
 {
+  {cod+=" FECHA_HORA();";}
   <fecha_hora><abre_par><cierra_par><punto_coma>
 }
 
@@ -769,18 +779,22 @@ void FECHA_HORA():{}
 
 void CONTAR():{}
 {
+  {cod+=" CONTAR(<<";}
   <contar><abre_par>"<""<"SELECCIONAR()">"">" <cierra_par><punto_coma>
+  {cod+=">>);";}
 }
 
 //------ bACKUPS
 void BACK_USQLDUMP():{}{
-
-<usqldump> term_id() term_id()<punto_coma>
-
+{cod+=" USQLDUMP ";}
+<usqldump> term_id() {cod+=" ";}term_id()<punto_coma>
+{cod+=";";}
 }
 
 void BACK_COMPLETO():{}{
+{cod+=" COMPLETO ";}
 <completo>term_id() term_id()<punto_coma>
+{cod+=";";}
 
 }
 
@@ -791,21 +805,23 @@ void op_backup()#void:{}{
 }
 
 void backup()#void:{}{
-
+ {cod+=" BACKUP ";}
   <backup>op_backup()
 }
 
 // ------------- Restaurar
 
 void REST_USQLDUMP():{}{
-
+{cod+=" USQLDUMP ";}
 <usqldump>Cadena()<punto_coma>
+{cod+=" ;";}
 
 }
 
 void REST_COMPLETO():{}{
-  
+ {cod+=" COMPLETO ";} 
 <completo>Cadena()<punto_coma>
+{cod+=" ; ";}
 
 }
 
@@ -817,6 +833,7 @@ void op_restauracion()#void:{}{
 }
 
 void restaurar()#void:{}{
+{cod+=" RESTAURAR ";}
 
   <restaurar>op_restauracion()
 }
@@ -830,12 +847,12 @@ void Condicion():{}
 
 void ExpSuma1()#void :{}
 {
-  ( ExpMult1() ( LOOKAHEAD(2)<OR>  ExpMult1() )* )  #Or(>1)
+  ( ExpMult1() ( LOOKAHEAD(2)<OR>{cod+="||";}  ExpMult1() )* )  #Or(>1)
 }
 
 void ExpMult1()#void : {}
 {
-    ( Term_Condicion() ( LOOKAHEAD(2)<AND>  Term_Condicion() )* )  #And(>1)
+    ( Term_Condicion() ( LOOKAHEAD(2)<AND> {cod+="&&";}  Term_Condicion() )* )  #And(>1)
 }
 
 
@@ -843,7 +860,7 @@ void Term_Condicion()#void:{}
 {
    LOOKAHEAD(2)Nuva_Condicion()
   |LOOKAHEAD(2)valorBool()
-  |<NOT> Nuva_CondicionNOT()
+  |<NOT> {cod+="!";} Nuva_CondicionNOT()
    
 }
 
@@ -855,26 +872,26 @@ void Nuva_CondicionNOT():{}
 
 void Nuva_Condicion():{}
 {
-  LOOKAHEAD(3)<abre_par>Condicion()<cierra_par>
+  LOOKAHEAD(3)<abre_par>{cod+="(";} Condicion()<cierra_par>{cod+=")";} 
   |LOOKAHEAD(3)Expresion() Operador() Expresion()
   //|LOOKAHEAD (2) valorBool()
 }
 
 void valorBool():{Token t;}{
-   t=<NUM>{ jjtThis.setName(t.image); }
-   |t=<verdadero>{ jjtThis.setName(t.image); }
-   |t=<falso>{ jjtThis.setName(t.image); }
+   t=<NUM>{ jjtThis.setName(t.image); cod+=t.image; }
+   |t=<verdadero>{ jjtThis.setName("1"); cod+="1"; }
+   |t=<falso>{ jjtThis.setName("0");cod+="0";  }
 
 }
 
 void Operador() #Operador: {Token t; }
 {
-    t = "<" { jjtThis.setName(t.image); }
-  | t = ">" { jjtThis.setName(t.image); }
-  | t = "<=" { jjtThis.setName(t.image); }
-  | t = ">=" { jjtThis.setName(t.image); }
-  | t = "==" { jjtThis.setName(t.image); }
-  | t = "!=" { jjtThis.setName(t.image); }
+    t = "<" { jjtThis.setName(t.image); cod+=t.image; }
+  | t = ">" { jjtThis.setName(t.image); cod+=t.image;}
+  | t = "<=" { jjtThis.setName(t.image); cod+=t.image;}
+  | t = ">=" { jjtThis.setName(t.image); cod+=t.image;}
+  | t = "==" { jjtThis.setName(t.image); cod+=t.image;}
+  | t = "!=" { jjtThis.setName(t.image); cod+=t.image;}
 }
 
 
@@ -890,34 +907,34 @@ void Expresion():{}
 
 void ExpSuma()#void:{}
 {
-	(ExpResta() (LOOKAHEAD(2)<S_MAS> ExpResta())*) #Suma (>1)
+	(ExpResta() (LOOKAHEAD(2)<S_MAS>{cod+="+";} ExpResta())*) #Suma (>1)
 
 } 
 
 void ExpResta()#void:{}
 {
-	(ExpMulti() (LOOKAHEAD(2)<S_MENOS> ExpMulti())*) #Resta (>1)
+	(ExpMulti() (LOOKAHEAD(2)<S_MENOS>{cod+="-";} ExpMulti())*) #Resta (>1)
 
 } 
 
 
 void ExpMulti()#void:{}
 {
-	(ExpDiv() (LOOKAHEAD(2)<S_POR> ExpDiv())*) #Multiplicacion (>1)
+	(ExpDiv() (LOOKAHEAD(2)<S_POR>{cod+="*";} ExpDiv())*) #Multiplicacion (>1)
 
 } 
 
 
 void ExpDiv()#void:{}
 {
-	(ExpPot() (LOOKAHEAD(2)<S_DIV> ExpPot())*) #Division (>1)
+	(ExpPot() (LOOKAHEAD(2)<S_DIV> {cod+="/";}ExpPot())*) #Division (>1)
 
 } 
 
 
 void ExpPot()#void:{}
 {
-	(Termino() (LOOKAHEAD(2)<S_POT> Termino())*) #Potencia (>1)
+	(Termino() (LOOKAHEAD(2)<S_POT>{cod+="^";} Termino())*) #Potencia (>1)
 
 } 
 
@@ -929,7 +946,7 @@ void Termino() #void :{}
   | LOOKAHEAD(3)ATRI_OBJ()
   | LOOKAHEAD(3)VAR()
   | LOOKAHEAD(2)op_campo()
-	| <abre_par> Expresion() <cierra_par>
+	| <abre_par>{cod+="(";} Expresion() <cierra_par>{cod+=")";}
 	| Decimal()
 	| Negativo()
 	| Cadena()
@@ -941,22 +958,23 @@ void Termino() #void :{}
 
 void LLAMADA():{}{
 
-  term_id()<abre_par>(Parametro_Expresion())?<cierra_par>
+  term_id()<abre_par>{cod+="(";}(Parametro_Expresion())?<cierra_par>{cod+=")";}
 
 }
 
 void ATRI_OBJ():{}{
-  "@"term_id()<punto>term_id()
+  {cod+="@";}
+  "@"term_id()<punto>{cod+=".";}term_id()
 }
 
 void VAR():{}{
-  "@"term_id()
+  "@"{cod+="@";}term_id()
 }
 
 void Negativo ():{}
 {
 
-   <S_MENOS>Expresion()  
+   <S_MENOS>{cod+="-";}Expresion()  
 }
 
 
@@ -997,7 +1015,7 @@ void Negativo ():{}
 
 void Ter_Decimal()#Decimal:{Token t;}
 {
-    t = <DECIMAL> { jjtThis.setName(t.image); }
+    t = <DECIMAL> { jjtThis.setName(t.image);cod+=t.image; }
 }
 
 
@@ -1008,12 +1026,12 @@ void Numero():{}
 
 void Ter_Numero() #Numero :{Token t;}
 {
-  t = <NUM> { jjtThis.setName(t.image); }
+  t = <NUM> { jjtThis.setName(t.image); cod+=t.image;}
 }
 
 void Ter_Cadena() #Cadena :{Token t;}
 {
-  t = <CADENA> { jjtThis.setName(t.image); }
+  t = <CADENA> { jjtThis.setName(t.image); cod+=t.image; }
 }
 
 void Cadena():{}
@@ -1024,7 +1042,8 @@ void Cadena():{}
 
 void Fecha():{}
 {
-Ter_Numero() <S_MENOS> Ter_Numero() <S_MENOS> Ter_Numero() (Ter_Numero() <dos_puntos> Ter_Numero() <dos_puntos> Ter_Numero())?
+Ter_Numero() <S_MENOS> {cod+="-";}Ter_Numero() <S_MENOS>{cod+="-";} Ter_Numero() 
+(Ter_Numero() <dos_puntos>{cod+=":";} Ter_Numero() <dos_puntos>{cod+=":";} Ter_Numero())?
 }
 
 
@@ -1037,12 +1056,12 @@ void Id():{}{
 void llamada_funcion():{}
 {
 
-  <abre_par>(Parametro_Expresion())?<cierra_par>
+  <abre_par>{cod+="(";}(Parametro_Expresion())?<cierra_par>{cod+=")";}
 }
 
 void id_extra():{}
 {
-  <punto> term_id()
+  <punto>{cod+=".";} term_id()
 }
 
 
@@ -1060,5 +1079,5 @@ void Extra_Id()#void:{}
 
 void Parametro_Expresion():{}
 {
-  Expresion() (<coma> Expresion(){cod+=",";})*
+  Expresion() (<coma>{cod+=",";} Expresion())*
 }
